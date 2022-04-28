@@ -1,10 +1,10 @@
-class SimpleWires{
+class Mazes{
     constructor (){
 
     }
 
     draw(){
-        console.log("SimpleWires.draw(): drawing in canvas")
+        console.log("Mazes.draw(): drawing in canvas")
         $("#canvas").html(`Not yet implemented.`);
     }
 }

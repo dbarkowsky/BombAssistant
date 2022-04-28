@@ -1,10 +1,10 @@
-class SimpleWires{
+class NeedyKnob{
     constructor (){
 
     }
 
     draw(){
-        console.log("SimpleWires.draw(): drawing in canvas")
+        console.log("NeedyKnob.draw(): drawing in canvas")
         $("#canvas").html(`Not yet implemented.`);
     }
 }

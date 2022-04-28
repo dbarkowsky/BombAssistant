@@ -1,10 +1,10 @@
-class SimpleWires{
+class ComplicatedWires{
     constructor (){
 
     }
 
     draw(){
-        console.log("SimpleWires.draw(): drawing in canvas")
+        console.log("ComplicatedWires.draw(): drawing in canvas")
         $("#canvas").html(`Not yet implemented.`);
     }
 }

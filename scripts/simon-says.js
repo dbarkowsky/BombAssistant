@@ -1,10 +1,10 @@
-class SimpleWires{
+class SimonSays{
     constructor (){
 
     }
 
     draw(){
-        console.log("SimpleWires.draw(): drawing in canvas")
+        console.log("SimonSays.draw(): drawing in canvas")
         $("#canvas").html(`Not yet implemented.`);
     }
 }

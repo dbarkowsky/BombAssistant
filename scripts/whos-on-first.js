@@ -1,10 +1,10 @@
-class SimpleWires{
+class WhosOnFirst{
     constructor (){
 
     }
 
     draw(){
-        console.log("SimpleWires.draw(): drawing in canvas")
+        console.log("WhosOnFirst.draw(): drawing in canvas")
         $("#canvas").html(`Not yet implemented.`);
     }
 }

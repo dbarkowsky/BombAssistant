@@ -1,10 +1,10 @@
-class SimpleWires{
+class Passwords{
     constructor (){
 
     }
 
     draw(){
-        console.log("SimpleWires.draw(): drawing in canvas")
+        console.log("Passwords.draw(): drawing in canvas")
         $("#canvas").html(`Not yet implemented.`);
     }
 }
