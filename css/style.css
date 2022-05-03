@@ -84,6 +84,8 @@ section{
     border: whitesmoke 2px outset;
     width: 100%;
     height: 100%;
+    color: rgb(124, 0, 0);
+    font-weight: bold;
 }
 
 .simple-wire-row{

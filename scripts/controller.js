@@ -32,7 +32,6 @@ function reset(){
 
 function startSimpleWires(){
     let newModule = new SimpleWires();
-    newModule.draw();
 }
 
 function startTheButton(){
