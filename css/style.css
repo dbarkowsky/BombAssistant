@@ -53,6 +53,28 @@ section{
     border-radius: 3px;
 }
 
+.serial-even-odd{
+    margin: 3px auto;
+    max-width: 450px;
+}
+
+.serial-even-odd div.col{
+    padding: 0px;
+}
+
+.steel-text{
+    background-color: gray;
+    font-family: "Stencil";
+    padding: 0.5em 1em;
+}
+
+.steel-button{
+    width: 100%;
+    font-size: 13pt;
+    font-family: "Stencil";
+    border: whitesmoke 2px outset;
+}
+
 /* General Colours */
 .yellow{
     background-color: yellow;
@@ -90,9 +112,6 @@ section{
 
 .simple-wire-row{
     height: 3em;
-    background-image: url("../images/module-background.webp");
-    background-repeat: repeat;
-    background-size: cover;
 }
 
 .simple-wire-row div{
@@ -102,7 +121,14 @@ section{
 
 .wire{
     margin: 1em 0.5em !important;
-    background-color: purple; 
+    visibility: hidden;
     height: 10px;
     border: solid black 1px;
+}
+
+#simple-wire-container{
+    background-image: url("../images/module-background.webp");
+    background-repeat: repeat;
+    background-size: cover;
+    padding: 0px;
 }

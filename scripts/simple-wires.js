@@ -7,7 +7,18 @@ class SimpleWires{
     draw(){
         console.log("SimpleWires.draw(): drawing in canvas")
         $("#canvas").html(` <div class="row console" id="instructions">Instructions appear here.</div>
-                            <div class="row simple-wire-row p-1">
+        <div class="steel-plate container-fluid" id="simple-wire-container">
+            <div class="serial-even-odd">
+                <div class="row steel-text">The last digit of the serial is...</div>
+                <div class="row">
+                    <div class="col"><button class="steel-button" id="even">EVEN</button></div>
+                    <div class="col"><button class="steel-button" id="odd">ODD</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="row console" id="commands">Add more wires.</div>`);
+        for(let i = 0; i < 6; i++){
+            $("#simple-wire-container").append(`<div class="row simple-wire-row p-1">
                                 <div class="col-4">
                                     <div class="wire my-auto"></div>
                                 </div>
@@ -19,9 +30,10 @@ class SimpleWires{
                                     <div class="col-2"><button class="simple-wire-button black"></button></div>
                                     <div class="col-2"><button class="simple-wire-button clear">X</button></div>
                                 </div>
-                            </div>
-                            <div class="row console" id="commands">Add more wires.</div>`);
+                            </div>`);
+        }
         $(".simple-wire-button").on("click", this.clickedButton);
+        $(".steel-button").on("click", this.evenOddButtons);
     }
 
     clickedButton(){
@@ -48,5 +60,9 @@ class SimpleWires{
         } else {
             $(this).closest(".simple-wire-row").find(".wire").css("visibility", "hidden");
         }
+    }
+
+    evenOddButtons(){
+        console.log(`SimpleWires: evenOddButtons() - ${this.id}`);
     }
 }
