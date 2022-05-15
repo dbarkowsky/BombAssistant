@@ -11,15 +11,7 @@ class SimpleWires{
     draw(){
         console.log("SimpleWires.draw(): drawing in canvas")
         $("#canvas").html(` <div class="row console" id="instructions">Instructions appear here.</div>
-                            <div class="steel-plate container-fluid" id="simple-wire-container">
-                                <div class="serial-even-odd">
-                                    <div class="row steel-text">The last digit of the serial is...</div>
-                                    <div class="row">
-                                        <div class="col"><button class="steel-button" id="even">EVEN</button></div>
-                                        <div class="col"><button class="steel-button" id="odd">ODD</button></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="steel-plate container-fluid" id="simple-wire-container"></div>
                             <div class="row console" id="commands">Add more wires.</div>`);
         for(let i = 0; i < 6; i++){
             $("#simple-wire-container").append(`<div class="row simple-wire-row p-1">
@@ -37,7 +29,6 @@ class SimpleWires{
                             </div>`);
         }
         $(".simple-wire-button").on("click", this.clickedButton);
-        $(".steel-button").on("click", this.evenOddButtons);
     }
 
     setCommands(){
@@ -77,16 +68,5 @@ class SimpleWires{
         }
 
         this.setCommands;
-    }
-
-    evenOddButtons(){
-        console.log(`SimpleWires: evenOddButtons() - ${this.id}`);
-        if ($(this).attr("id") == "even")
-            this.serial = 0;
-        else
-            this.serial = 1;
-  
-    }
-
-    
+    }    
 }

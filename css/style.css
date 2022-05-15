@@ -14,7 +14,7 @@ section{
 }
 
 
-#home{
+.menu-buttons{
     width: 100%;
     height: 2em;
     font-weight: bold;
@@ -73,6 +73,10 @@ section{
     font-size: 13pt;
     font-family: "Stencil";
     border: whitesmoke 2px outset;
+}
+
+.selected{
+    background-color: lightgreen;
 }
 
 /* General Colours */

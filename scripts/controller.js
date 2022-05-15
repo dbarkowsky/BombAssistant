@@ -97,5 +97,6 @@ $(document).ready(function () {
     //Assign main button to reset this area to default.
     $("#home").on("click", reset);
 
-    
+    //Create Bomb instance to hold global variables
+    let theBomb = new Bomb();
 });
