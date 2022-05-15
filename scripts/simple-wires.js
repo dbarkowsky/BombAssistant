@@ -1,22 +1,26 @@
 class SimpleWires{
+    serial;
+    wireCount;
+
     constructor (){
         this.draw();
-
+        this.serial = null;
+        this.wireCount = 0;
     }
 
     draw(){
         console.log("SimpleWires.draw(): drawing in canvas")
         $("#canvas").html(` <div class="row console" id="instructions">Instructions appear here.</div>
-        <div class="steel-plate container-fluid" id="simple-wire-container">
-            <div class="serial-even-odd">
-                <div class="row steel-text">The last digit of the serial is...</div>
-                <div class="row">
-                    <div class="col"><button class="steel-button" id="even">EVEN</button></div>
-                    <div class="col"><button class="steel-button" id="odd">ODD</button></div>
-                </div>
-            </div>
-        </div>
-        <div class="row console" id="commands">Add more wires.</div>`);
+                            <div class="steel-plate container-fluid" id="simple-wire-container">
+                                <div class="serial-even-odd">
+                                    <div class="row steel-text">The last digit of the serial is...</div>
+                                    <div class="row">
+                                        <div class="col"><button class="steel-button" id="even">EVEN</button></div>
+                                        <div class="col"><button class="steel-button" id="odd">ODD</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row console" id="commands">Add more wires.</div>`);
         for(let i = 0; i < 6; i++){
             $("#simple-wire-container").append(`<div class="row simple-wire-row p-1">
                                 <div class="col-4">
@@ -36,33 +40,53 @@ class SimpleWires{
         $(".steel-button").on("click", this.evenOddButtons);
     }
 
+    setCommands(){
+        console.log("SimpleWires: setCommands() - " + this.wireCount);
+
+        switch (this.wireCount){
+            case 3:
+                $("#commands").html(`3 wires.`);
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            default:
+                $("#commands").html(`Add more wires.`);
+        }
+    }
+
     clickedButton(){
-        let colour = "";
-
-        if($(this).hasClass("yellow"))
-            colour = "yellow";
-        if($(this).hasClass("blue"))
-            colour = "blue";
-        if($(this).hasClass("black"))
-            colour = "black";
-        if($(this).hasClass("white"))
-            colour = "white";
-        if($(this).hasClass("red"))
-            colour = "red";
-        if($(this).hasClass("clear"))
-            colour = "clear";
-
+        let colour = $(this).css("background-color");
+        let line = $(this).closest(".simple-wire-row").find(".wire");
+    
         console.log("SimpleWires: clickedButton() - " + colour);
 
-        if (colour !== "clear") {
-            $(this).closest(".simple-wire-row").find(".wire").css("background-color", colour);
-            $(this).closest(".simple-wire-row").find(".wire").css("visibility", "visible");
+        if (!$(this).hasClass("clear")) {
+            if (line.css('visibility') == 'hidden')
+                this.wireCount++;
+
+            line.css("background-color", colour);
+            line.css("visibility", "visible");
         } else {
-            $(this).closest(".simple-wire-row").find(".wire").css("visibility", "hidden");
+            if (line.css('visibility') == 'visible')
+                this.wireCount--;
+            line.css("visibility", "hidden");
         }
+
+        this.setCommands;
     }
 
     evenOddButtons(){
         console.log(`SimpleWires: evenOddButtons() - ${this.id}`);
+        if ($(this).attr("id") == "even")
+            this.serial = 0;
+        else
+            this.serial = 1;
+  
     }
+
+    
 }
