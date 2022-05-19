@@ -5,7 +5,6 @@ class SimpleWires{
     constructor (){
         this.draw();
         this.serial = null;
-        this.wireCount = 0;
     }
 
     draw(){
@@ -29,12 +28,47 @@ class SimpleWires{
                             </div>`);
         }
         $(".simple-wire-button").on("click", this.clickedButton);
+        $(".simple-wire-button").on("click", this.setCommands);
     }
 
     setCommands(){
-        console.log("SimpleWires: setCommands() - " + this.wireCount);
+        const YELLOW_INDEX = 0;
+        const BLUE_INDEX = 1;
+        const RED_INDEX = 2;
+        const WHITE_INDEX = 3;
+        const BLACK_INDEX = 4;
 
-        switch (this.wireCount){
+        let coloursCount = [0, 0, 0, 0, 0];
+        const rawWires = document.getElementsByClassName("wire");
+        let refinedWires = [];
+
+        for (let wire of rawWires) {
+            if (wire.style.visibility == "visible"){
+                refinedWires.push(wire);
+            }
+
+            switch (wire.style.backgroundColor){
+                case 'rgb(255, 0, 0)':
+                    coloursCount[RED_INDEX]++;
+                    break;
+                case 'rgb(245, 245, 245)':
+                    coloursCount[WHITE_INDEX]++;
+                    break;
+                case 'rgb(0, 0, 0)':
+                    coloursCount[BLACK_INDEX]++;
+                    break;
+                case 'rgb(255, 255, 0)':
+                    coloursCount[YELLOW_INDEX]++;
+                    break;
+                case 'rgb(0, 0, 255)':
+                    coloursCount[BLUE_INDEX]++;
+                    break;
+            }
+        }
+
+        console.log("SimpleWires: setCommands() - " + refinedWires.length);
+        console.log("SimpleWires: setCommands() - " + coloursCount);
+        switch (refinedWires.length){
             case 3:
                 $("#commands").html(`3 wires.`);
                 break;
@@ -56,17 +90,10 @@ class SimpleWires{
         console.log("SimpleWires: clickedButton() - " + colour);
 
         if (!$(this).hasClass("clear")) {
-            if (line.css('visibility') == 'hidden')
-                this.wireCount++;
-
             line.css("background-color", colour);
             line.css("visibility", "visible");
         } else {
-            if (line.css('visibility') == 'visible')
-                this.wireCount--;
             line.css("visibility", "hidden");
         }
-
-        this.setCommands;
     }    
 }
