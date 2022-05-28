@@ -36,7 +36,7 @@
 			<div class="row">
 				<div class="col">
 					<button type="button" class="btn btn-secondary mx-auto my-3 menu-buttons" data-bs-toggle="modal" data-bs-target="#bomb-globals-modal">
-						Bomb Settings
+						Bomb
 					</button>
 				</div>
 				<div class="col">
@@ -52,11 +52,18 @@
 							Set global bomb settings.
 						</div>
 						<div class="modal-body">
-							<div class="serial-even-odd">
+							<div id="even-odd-serial" class="global-setting-container">
 								<div class="row steel-text">The last digit of the serial is...</div>
 								<div class="row">
 									<div class="col"><button class="steel-button even-odd-button" id="even">EVEN</button></div>
 									<div class="col"><button class="steel-button even-odd-button" id="odd">ODD</button></div>
+								</div>
+							</div>
+							<div id="vowel-serial" class="global-setting-container">
+								<div class="row steel-text">The serial contains a vowel.</div>
+								<div class="row">
+									<div class="col"><button class="steel-button vowel-button" value="1">YES</button></div>
+									<div class="col"><button class="steel-button vowel-button" value="0">NO</button></div>
 								</div>
 							</div>
 						</div>

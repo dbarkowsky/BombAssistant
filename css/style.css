@@ -53,12 +53,12 @@ section{
     border-radius: 3px;
 }
 
-.serial-even-odd{
+.global-setting-container{
     margin: 0px auto;
     max-width: 450px;
 }
 
-.serial-even-odd div.col{
+.global-setting-container div.col{
     padding: 0px;
 }
 
