@@ -104,6 +104,11 @@ section{
     background-color: grey;
 }
 
+/* Bomb Modal Specific */
+#parallel-img{
+    width: 100px;
+}
+
 /* Simple Wires */
 .simple-wire-button{
     position: relative;

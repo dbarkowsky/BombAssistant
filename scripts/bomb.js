@@ -14,6 +14,9 @@ class Bomb{
 
         $(".even-odd-button").on("click", this.evenOddButtons);
         $(".vowel-button").on("click", this.serialVowelButton);
+        $('.battery-button').on('click', this.batteryCountButtons);
+        $('.indicator-button').on('click', this.litIndicatorButtons);
+        $('.parallel-port-button').on('click', this.parallelPortButton);
     }
 
     evenOddButtons(){
@@ -24,12 +27,6 @@ class Bomb{
 
         // Add the class back to the appropriate button
         $(this).addClass("selected");
-
-        // Assign even or odd boolean based on id
-        if ($(this).attr("id") == "even")
-            this.serialEven = true;
-        else
-            this.serialEven = false;
     }
 
     serialVowelButton(){
@@ -40,29 +37,38 @@ class Bomb{
 
         // Add the class back to the appropriate button
         $(this).addClass("selected");
-
-        // Assign even or odd boolean based on id
-        if ($(this).attr("value") == 1)
-            this.serialVowel = true;
-        else
-            this.serialVowel = false;
     }
 
     batteryCountButtons(){
+        console.log(`Bomb: batterCountButtons()`);
+        // Get current value
+        let currentValue = parseInt($('#battery-display').attr('value'));
         // Check if up or down button is pressed
         // Increment or decrement value appropriately
-        // Update visual
+        if ($(this).attr('id') == 'battery-up'){
+            currentValue++;
+        } else {
+            currentValue--;
+        }
+        // Update visual and value
+        $('#battery-display').html(currentValue);
+        $('#battery-display').attr('value', currentValue);
     }
 
     litIndicatorButtons(){
-        // Check if button pressed is already in the list
-        // If so, remove selected style and remove from list
-        // If not, add selected style and push to list
+        console.log(`Bomb: litIndicatorButtons()`);
+
+        // Toggle the class on the appropriate button
+        $(this).toggleClass("selected");
     }
 
     parallelPortButton(){
-        // Check if button is already marked as selected
-        // If so, removed selected and change to false
-        // Otherwise, add selected and change to true
+        console.log(`Bomb: parallelPortButton()`);
+        
+        // Set any buttons with this class to default
+        $(".selected.parallel-port-button").removeClass("selected");
+
+        // Add the class back to the appropriate button
+        $(this).addClass("selected");
     }
 }
