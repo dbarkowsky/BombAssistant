@@ -15,17 +15,17 @@ class SimpleWires{
                                     <div class="wire my-auto"></div>
                                 </div>
                                 <div class="col-8 row">
-                                    <div class="col-2"><button class="simple-wire-button yellow"></button></div>
-                                    <div class="col-2"><button class="simple-wire-button blue"></button></div>
-                                    <div class="col-2"><button class="simple-wire-button red"></button></div>
-                                    <div class="col-2"><button class="simple-wire-button white"></button></div>
-                                    <div class="col-2"><button class="simple-wire-button black"></button></div>
-                                    <div class="col-2"><button class="simple-wire-button clear">X</button></div>
+                                    <div class="col-2"><button class="colour-button yellow"></button></div>
+                                    <div class="col-2"><button class="colour-button blue"></button></div>
+                                    <div class="col-2"><button class="colour-button red"></button></div>
+                                    <div class="col-2"><button class="colour-button white"></button></div>
+                                    <div class="col-2"><button class="colour-button black"></button></div>
+                                    <div class="col-2"><button class="colour-button clear">X</button></div>
                                 </div>
                             </div>`);
         }
-        $(".simple-wire-button").on("click", this.clickedButton);
-        $(".simple-wire-button").on("click", this.setCommands);
+        $(".colour-button").on("click", this.clickedButton);
+        $(".colour-button").on("click", this.setCommands);
     }
 
     // Checks wires and runs logic to give defuser commands

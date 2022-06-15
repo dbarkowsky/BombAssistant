@@ -1,6 +1,6 @@
 class TheButton{
     constructor (){
-
+        this.draw();
     }
 
     draw(){
