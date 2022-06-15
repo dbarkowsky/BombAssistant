@@ -47,7 +47,7 @@ class Bomb{
         // Increment or decrement value appropriately
         if ($(this).attr('id') == 'battery-up'){
             currentValue++;
-        } else {
+        } else if (currentValue > 0){
             currentValue--;
         }
         // Update visual and value

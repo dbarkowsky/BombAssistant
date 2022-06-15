@@ -36,57 +36,46 @@ function startSimpleWires(){
 
 function startTheButton(){
     let newModule = new TheButton();
-    newModule.draw();
 }
 
 function startSymbols(){
     let newModule = new Symbols();
-    newModule.draw();
 }
 
 function startMemory(){
     let newModule = new Memory();
-    newModule.draw();
 }
 
 function startABC123(){
     let newModule = new ABC123();
-    newModule.draw();
 }
 
 function startPasswords(){
     let newModule = new Passwords();
-    newModule.draw();
 }
 
 function startMorseCode(){
     let newModule = new MorseCode();
-    newModule.draw();
 }
 
 function startComplicatedWires(){
     let newModule = new ComplicatedWires();
-    newModule.draw();
 }
 
 function startMazes(){
     let newModule = new Mazes();
-    newModule.draw();
 }
 
 function startSimonSays(){
     let newModule = new SimonSays();
-    newModule.draw();
 }
 
 function startWhosOnFirst(){
     let newModule = new WhosOnFirst();
-    newModule.draw();
 }
 
 function startNeedyKnob(){
     let newModule = new NeedyKnob();
-    newModule.draw();
 }
 
 

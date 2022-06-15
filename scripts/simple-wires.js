@@ -3,6 +3,7 @@ class SimpleWires{
         this.draw();
     }
 
+    // TODO: change implementation so only one row is present at a time + clearing wire removes row
     draw(){
         console.log("SimpleWires.draw(): drawing in canvas")
         $("#canvas").html(` <div class="row console" id="instructions">Instructions appear here.</div>
@@ -27,6 +28,7 @@ class SimpleWires{
         $(".simple-wire-button").on("click", this.setCommands);
     }
 
+    // Checks wires and runs logic to give defuser commands
     setCommands(){
         const YELLOW_INDEX = 0;
         const BLUE_INDEX = 1;
@@ -39,10 +41,12 @@ class SimpleWires{
         const WHITE_RGB = 'rgb(245, 245, 245)';
         const BLACK_RGB = 'rgb(0, 0, 0)';
 
+        // Get the wires
         let coloursCount = [0, 0, 0, 0, 0];
         const rawWires = document.getElementsByClassName("wire");
         let refinedWires = [];
 
+        // For each wire, add to list and count colours
         for (let wire of rawWires) {
             if (wire.style.visibility == "visible"){
                 refinedWires.push(wire);
@@ -69,7 +73,10 @@ class SimpleWires{
 
         console.log("SimpleWires: setCommands() - " + refinedWires.length);
         console.log("SimpleWires: setCommands() - " + coloursCount);
+        // Track last wire for logic purposes
         const LAST_WIRE = refinedWires.length - 1;
+
+        // Run logic for which command to give
         switch (refinedWires.length){
             case 3:
                 // If there are no red wires, cut the second wire.
@@ -141,16 +148,20 @@ class SimpleWires{
         }
     }
 
+    // When a user clicks a colour button
     clickedButton(){
+        // Get button colour
         let colour = $(this).css("background-color");
+        // Get related wire/line
         let line = $(this).closest(".simple-wire-row").find(".wire");
     
         console.log("SimpleWires: clickedButton() - " + colour);
 
+        // If already clear, add colour and show
         if (!$(this).hasClass("clear")) {
             line.css("background-color", colour);
             line.css("visibility", "visible");
-        } else {
+        } else { // else, hide it
             line.css("visibility", "hidden");
         }
     }    
