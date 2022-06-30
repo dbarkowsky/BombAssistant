@@ -88,6 +88,10 @@ section{
     background-color: lightgreen;
 }
 
+.hidden{
+    display: none;
+}
+
 .circle{
     border-radius: 100%;
     background-color: grey;

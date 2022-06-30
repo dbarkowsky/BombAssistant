@@ -81,7 +81,7 @@ function startNeedyKnob(){
 
 $(document).ready(function () {
     //Insert modules into canvas
-    //reset();    
+    reset();    
 
     //Assign main button to reset this area to default.
     $("#home").on("click", reset);
