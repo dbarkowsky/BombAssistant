@@ -6,10 +6,18 @@ class Passwords{
 
     constructor (){
         this.words = ['about', 'after', 'again', 'below', 'could', 'every', 'first', 'found', 'great', 'house', 'large', 'learn', 'never', 'other', 'place', 'plant', 'point', 'right', 'small', 'sound', 'spell', 'still', 'study', 'their', 'there', 'these', 'thing', 'think', 'three', 'water', 'where', 'which', 'world', 'would', 'write'];
-        this.selectedLetters = [[]];    // 2D array with columns 1-5 holding selected button content 
+        this.selectedLetters = this.createSelectedLetters();    // 2D array with columns 1-5 holding selected button content 
         this.filteredWords = [];        // Final array with possible words after filtering
         this.farthestSelectedColumn = -1;
         this.draw();
+    }
+
+    createSelectedLetters(){
+        let temp = [];
+        for (let i = 0; i < 5; i++){
+            temp[i] = [];
+        }
+        return temp;
     }
 
     columnController(){
@@ -72,13 +80,35 @@ class Passwords{
                 // If this word has a letter at that location
                 console.log(`current word: ${this.words[i]}, column: ${column}, and letter: ${letter}`);
                 if (this.words[i].charAt(column).toUpperCase() == letter){
-                    // Is the previous letter selected in the previous column?
-                    console.log(column + letter);
-                    if (this.selectedLetters[column - 1].includes(this.words[i].charAt(column - 1).toUpperCase())){
-                        console.log(letter + ' exists');
-                        console.log(`not last column ${this.words[i].charAt(column - 1)} ${column-1}`);
-                        return this.shouldThisBeVisible(this.words[i].charAt(column - 1).toUpperCase(), column - 1);
+
+                    // Are the previous letters in the word available?
+                    let previousLettersSelected = [];
+                    // For each column/letter left of checked letter
+                    console.log(this.selectedLetters);
+                    for (let j = column - 1; j >= 0; j--){
+                        console.log(j);
+                        if (this.selectedLetters[j].includes(this.words[i].charAt(j).toUpperCase())){
+                            previousLettersSelected.push(true);
+                        } else {
+                            previousLettersSelected.push(false);
+                            break;
+                        }
                     }
+
+                    // Were all of them true? AKA all needed letters were selected
+                    if (!previousLettersSelected.includes(false)){
+                        return true;
+                    }
+
+
+                //     // Is the previous letter selected in the previous column?
+                //     console.log(column + letter);
+                //     if (this.selectedLetters[column - 1].includes(this.words[i].charAt(column - 1).toUpperCase())){
+                //         console.log(letter + ' exists');
+                //         console.log(`not last column ${this.words[i].charAt(column - 1)} ${column-1}`);
+                //         return this.shouldThisBeVisible(this.words[i].charAt(column - 1).toUpperCase(), column - 1);
+                //     }
+                // }
                 }
             }
             // All words looped through, no complete matches found.
