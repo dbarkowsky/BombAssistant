@@ -6,60 +6,67 @@ class Passwords{
 
     constructor (){
         this.words = ['about', 'after', 'again', 'below', 'could', 'every', 'first', 'found', 'great', 'house', 'large', 'learn', 'never', 'other', 'place', 'plant', 'point', 'right', 'small', 'sound', 'spell', 'still', 'study', 'their', 'there', 'these', 'thing', 'think', 'three', 'water', 'where', 'which', 'world', 'would', 'write'];
-        this.selectedLetters = this.createSelectedLetters();    // 2D array with columns 1-5 holding selected button content 
+        this.selectedLetters = [[]];    // 2D array with columns 1-5 holding selected button content 
         this.filteredWords = [];        // Final array with possible words after filtering
         this.farthestSelectedColumn = -1;
         this.draw();
-    }
-
-    createSelectedLetters(){
-        let temp = [];
-        for (let i = 0; i < 5; i++){
-            temp[i] = [];
-        }
-        return temp;
     }
 
     columnController(){
         console.log("Passwords: columnController() - populating columns");
 
         // get all selected letters
-        // determine farthest selected column -> determines later algorithms
+        this.setSelectedLetters();
         // de-select letters if they don't match -> start in column 1
         // check if other letters should be visible/not visible -> start in column 4
-        // get all selected letters again --- remove in previous step if possible
-        // compare selected letters to list of words
-        this.setSelectedLetters();
         this.displayLetters();
+        // get all selected letters again --- remove in previous step if possible
+        this.setSelectedLetters();
+        // compare selected letters to list of words
+        this.populateFilteredWords();
+    }
+
+    populateFilteredWords(){
+        this.filteredWords = [];
+        this.setFarthestSelectedColumn();
+        for(let i = 0; i < this.words.length; i++){
+            let allLettersSelected = [];
+            for(let j = this.farthestSelectedColumn; j >= 0; j--){
+                if (this.selectedLetters[j].includes(this.words[i].charAt(j).toUpperCase())){
+                    allLettersSelected.push(true);
+                } else {
+                    allLettersSelected.push(false);
+                }
+            }
+            if(!allLettersSelected.includes(false)){
+                this.filteredWords.push(this.words[i]);
+            }
+        }
+
+        $('#commands').html('Possible words: ');
+        this.filteredWords.forEach(word => {
+            $('#commands').append(`${word} `);
+        });
     }
 
     setFarthestSelectedColumn(){
-        let currentColumn = 4;
-        let columnFound = false;
-        while (!columnFound && currentColumn <= 0){
-            if (this.selectedButtons[currentColumn].length != 0){
-                columnFound = true;
-                this.farthestSelectedColumn = currentColumn;
+        for(let i = 0; i < this.selectedLetters.length; i++){
+            if (this.selectedLetters[i].length != 0){
+                this.farthestSelectedColumn = i;
             }
-            currentColumn--;
         }
     }
 
     displayLetters(){
-        // Update column 0 list
-        // this.selectedLetters[0] = this.getSelectedLettersInColumn[0];
         // For each column after the first
         for (let i = 1; i <= 4; i++){
             // For each button in column, see if preceeding letter requirement is there.
             let buttonList = $(`#${i} .steel-button`).toArray();
         
             buttonList.forEach(button => {
-                console.log(`${this.shouldThisBeVisible(button.textContent, i)}: ${button.textContent}`);
                 if (this.shouldThisBeVisible(button.textContent, i)){
-                    console.log(button.textContent + " should be visible");
                     button.classList.remove('hidden');
                 } else {
-                    console.log(button.textContent + " should not be visible");
                     button.classList.add('hidden');
                     button.classList.remove('selected');
                 }
@@ -72,21 +79,17 @@ class Passwords{
     shouldThisBeVisible(letter, column){
         // Was that the last column? Then all needed letters are selected.
         if (column == 0){
-            console.log(`last column`);
             return true;
         } else {
             // Go through every word in list
             for (let i = 0; i < this.words.length; i++){
                 // If this word has a letter at that location
-                console.log(`current word: ${this.words[i]}, column: ${column}, and letter: ${letter}`);
                 if (this.words[i].charAt(column).toUpperCase() == letter){
 
                     // Are the previous letters in the word available?
                     let previousLettersSelected = [];
                     // For each column/letter left of checked letter
-                    console.log(this.selectedLetters);
                     for (let j = column - 1; j >= 0; j--){
-                        console.log(j);
                         if (this.selectedLetters[j].includes(this.words[i].charAt(j).toUpperCase())){
                             previousLettersSelected.push(true);
                         } else {
@@ -99,16 +102,6 @@ class Passwords{
                     if (!previousLettersSelected.includes(false)){
                         return true;
                     }
-
-
-                //     // Is the previous letter selected in the previous column?
-                //     console.log(column + letter);
-                //     if (this.selectedLetters[column - 1].includes(this.words[i].charAt(column - 1).toUpperCase())){
-                //         console.log(letter + ' exists');
-                //         console.log(`not last column ${this.words[i].charAt(column - 1)} ${column-1}`);
-                //         return this.shouldThisBeVisible(this.words[i].charAt(column - 1).toUpperCase(), column - 1);
-                //     }
-                // }
                 }
             }
             // All words looped through, no complete matches found.
@@ -130,7 +123,6 @@ class Passwords{
             selectedLetters.push(button.textContent);
         });
         
-        console.log(`Passwords: getSelectedButtonsInColumn() - column ${column}: ${selectedLetters}`);
         return selectedLetters;
     }
 
@@ -153,7 +145,6 @@ class Passwords{
     selectButton = () => {
         $(event.currentTarget).toggleClass('selected');
         this.columnController();
-        console.log(this.selectedLetters);
     }
 
     draw(){
