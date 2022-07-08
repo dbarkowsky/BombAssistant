@@ -5,7 +5,7 @@ class TheButton{
 
     draw(){
         console.log("TheButton.draw(): drawing in canvas")
-        $("#canvas").html(`<div class="row console" id="instructions">Instructions appear here.</div>
+        $("#canvas").html(`<div class="row console" id="instructions">This module is incomplete!</div>
         <div class="steel-plate container-fluid">
             <div class="row">
                 <div class="col-md-3">

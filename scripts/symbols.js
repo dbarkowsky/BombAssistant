@@ -1,6 +1,6 @@
 class Symbols{
     constructor (){
-
+        this.draw();
     }
 
     draw(){

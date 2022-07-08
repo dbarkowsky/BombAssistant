@@ -1,6 +1,6 @@
 class WhosOnFirst{
     constructor (){
-
+        this.draw();
     }
 
     draw(){

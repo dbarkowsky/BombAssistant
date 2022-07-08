@@ -1,6 +1,6 @@
 class MorseCode{
     constructor (){
-
+        this.draw();
     }
 
     draw(){

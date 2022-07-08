@@ -1,6 +1,6 @@
 class ABC123{
     constructor (){
-
+        this.draw();
     }
 
     draw(){

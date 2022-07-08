@@ -1,6 +1,6 @@
 class Memory{
     constructor (){
-
+        this.draw();
     }
 
     draw(){

@@ -1,6 +1,6 @@
 class NeedyKnob{
     constructor (){
-
+        this.draw();
     }
 
     draw(){

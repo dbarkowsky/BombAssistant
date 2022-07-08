@@ -1,6 +1,6 @@
 class SimonSays{
     constructor (){
-
+        this.draw();
     }
 
     draw(){

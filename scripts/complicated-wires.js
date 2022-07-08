@@ -1,6 +1,6 @@
 class ComplicatedWires{
     constructor (){
-
+        this.draw();
     }
 
     draw(){
