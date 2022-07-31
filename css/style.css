@@ -159,3 +159,14 @@ section{
     border: solid black 1px;
 }
 
+/* Mazes */
+.maze-square{
+    height: 50px;
+    border: solid 1px rgb(209, 209, 209);
+}
+
+#maze{
+    border: solid 3px black;
+    width: 300px;
+    margin: 1em auto;
+}

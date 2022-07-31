@@ -1,3 +1,5 @@
+
+
 function reset(){
     $("#canvas").html(` <div class="row">
                             <div class="col-lg-3 col-md-4 col-6 module-panel"><img id="img-simple-wires" class="module-image" src="./images/realModules/simple-wires.webp"></div>
