@@ -1,4 +1,4 @@
-
+let currentModule;
 
 function reset(){
     $("#canvas").html(` <div class="row">
@@ -33,7 +33,7 @@ function reset(){
 }
 
 function startSimpleWires(){
-    let newModule = new SimpleWires();
+    currentModule = new SimpleWires();
 }
 
 function startTheButton(){
@@ -65,7 +65,7 @@ function startComplicatedWires(){
 }
 
 function startMazes(){
-    let newModule = new Mazes();
+    currentModule = new Mazes();
 }
 
 function startSimonSays(){
@@ -79,6 +79,7 @@ function startWhosOnFirst(){
 function startNeedyKnob(){
     let newModule = new NeedyKnob();
 }
+
 
 
 $(document).ready(function () {
