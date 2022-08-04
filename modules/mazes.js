@@ -140,41 +140,54 @@ class Mazes{
           this.redTriangle = selectedTag;
           console.log('red triangle', this.redTriangle);
           this.optimalPath = this.findPath(this.whiteSquare, this.redTriangle);
+          console.log('optimal path', this.optimalPath);
         }
     }
 
     // Finds optimal path through maze. Stores as list of square tags.
     findPath = (currentLocation, destination, previousLocation = "") => {
       console.log(`Mazes: findPath()`, `${currentLocation} to ${destination}`);
-      let path = [];
-      //Base case, if currentLocation == destination
-      if (currentLocation === destination){
-        path.push(currentLocation);
-        console.log(path);
-        return path;
-      } else {
-        // see if each direction is neither null nor last visited, repeat
-        if (this.squares[currentLocation].up !== null && this.squares[currentLocation].up.tag !== previousLocation){
-          if(this.findPath(this.squares[currentLocation].up, destination, currentLocation !== null))
-            return this.findPath(this.squares[currentLocation].up.tag, destination, currentLocation);
+      let returnString = "";
+      
+      if (currentLocation !== null){
+        if (currentLocation === destination){
+          console.log('found it', currentLocation);
+          return currentLocation;
+        } else {
+          // see if each direction is neither null nor last visited, repeat
+          if (this.squares[currentLocation].up !== null && this.squares[this.squares[currentLocation].up].tag !== previousLocation){
+            console.log('up', currentLocation);
+            // Recursive call to next direction
+            returnString = this.findPath(this.squares[this.squares[currentLocation].up].tag, destination, currentLocation);
+            // If identifying string is present, it didn't find the end, so don't return this path.
+            if (!returnString.includes("$$$"))
+              return currentLocation + "," + returnString;
+          }
+  
+          if (this.squares[currentLocation].down !== null && this.squares[this.squares[currentLocation].down].tag !== previousLocation){
+            console.log('down', currentLocation);
+            returnString = this.findPath(this.squares[this.squares[currentLocation].down].tag, destination, currentLocation);
+            if (!returnString.includes("$$$"))
+              return currentLocation + "," + returnString;
+          }
+  
+          if (this.squares[currentLocation].left !== null && this.squares[this.squares[currentLocation].left].tag !== previousLocation){
+            console.log('left', currentLocation);
+            returnString = this.findPath(this.squares[this.squares[currentLocation].left].tag, destination, currentLocation);
+            if (!returnString.includes("$$$"))
+              return currentLocation + "," + returnString;
+          }
+  
+          if (this.squares[currentLocation].right !== null && this.squares[this.squares[currentLocation].right].tag !== previousLocation){
+            console.log('right', currentLocation);
+            returnString = this.findPath(this.squares[this.squares[currentLocation].right].tag, destination, currentLocation);
+            if (!returnString.includes("$$$"))
+              return currentLocation + "," + returnString;
+          }
         }
-
-        if (this.squares[currentLocation].down !== null && this.squares[currentLocation].down.tag !== previousLocation){
-          if(this.findPath(this.squares[currentLocation].down, destination, currentLocation !== null))
-            return this.findPath(this.squares[currentLocation].down.tag, destination, currentLocation);
-        }
-
-        if (this.squares[currentLocation].left !== null && this.squares[currentLocation].left.tag !== previousLocation){
-          if(this.findPath(this.squares[currentLocation].left, destination, currentLocation !== null))
-            return this.findPath(this.squares[currentLocation].left.tag, destination, currentLocation);
-        }
-
-        if (this.squares[currentLocation].right !== null && this.squares[currentLocation].right.tag !== previousLocation){
-          if(this.findPath(this.squares[currentLocation].right, destination, currentLocation !== null))
-            return this.findPath(this.squares[currentLocation].right.tag, destination, currentLocation);
-        }
-      }
-      return null;
+      } 
+      // If can no longer search in any direction, send back identifying string.
+      return "$$$";
     }
 
     // Based on optimal path, draws SVG line through squares
