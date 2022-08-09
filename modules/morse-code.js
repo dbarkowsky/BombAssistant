@@ -1,10 +1,10 @@
-class MorseCode{
-    constructor (){
-        this.draw();
-    }
+class MorseCode {
+  constructor() {
+    this.draw();
+  }
 
-    draw(){
-        console.log("MorseCode.draw(): drawing in canvas")
-        $("#canvas").html(`Not yet implemented.`);
-    }
+  draw() {
+    console.log('MorseCode.draw(): drawing in canvas');
+    $('#canvas').html(`Not yet implemented.`);
+  }
 }

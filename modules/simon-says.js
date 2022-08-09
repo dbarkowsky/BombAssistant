@@ -1,10 +1,10 @@
-class SimonSays{
-    constructor (){
-        this.draw();
-    }
+class SimonSays {
+  constructor() {
+    this.draw();
+  }
 
-    draw(){
-        console.log("SimonSays.draw(): drawing in canvas")
-        $("#canvas").html(`Not yet implemented.`);
-    }
+  draw() {
+    console.log('SimonSays.draw(): drawing in canvas');
+    $('#canvas').html(`Not yet implemented.`);
+  }
 }

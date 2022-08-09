@@ -1,155 +1,199 @@
-class Passwords{
-    words;
-    selectedLetters;
-    filteredWords;
-    farthestSelectedColumn;
+class Passwords {
+  words;
+  selectedLetters;
+  filteredWords;
+  farthestSelectedColumn;
 
-    constructor (){
-        this.words = ['about', 'after', 'again', 'below', 'could', 'every', 'first', 'found', 'great', 'house', 'large', 'learn', 'never', 'other', 'place', 'plant', 'point', 'right', 'small', 'sound', 'spell', 'still', 'study', 'their', 'there', 'these', 'thing', 'think', 'three', 'water', 'where', 'which', 'world', 'would', 'write'];
-        this.selectedLetters = [[]];    // 2D array with columns 1-5 holding selected button content 
-        this.filteredWords = [];        // Final array with possible words after filtering
-        this.farthestSelectedColumn = -1;
-        this.draw();
-    }
+  constructor() {
+    this.words = [
+      'about',
+      'after',
+      'again',
+      'below',
+      'could',
+      'every',
+      'first',
+      'found',
+      'great',
+      'house',
+      'large',
+      'learn',
+      'never',
+      'other',
+      'place',
+      'plant',
+      'point',
+      'right',
+      'small',
+      'sound',
+      'spell',
+      'still',
+      'study',
+      'their',
+      'there',
+      'these',
+      'thing',
+      'think',
+      'three',
+      'water',
+      'where',
+      'which',
+      'world',
+      'would',
+      'write',
+    ];
+    this.selectedLetters = [[]]; // 2D array with columns 1-5 holding selected button content
+    this.filteredWords = []; // Final array with possible words after filtering
+    this.farthestSelectedColumn = -1;
+    this.draw();
+  }
 
-    columnController(){
-        console.log("Passwords: columnController() - populating columns");
+  columnController() {
+    console.log('Passwords: columnController() - populating columns');
 
-        // get all selected letters
-        this.setSelectedLetters();
-        // de-select letters if they don't match -> start in column 1
-        // check if other letters should be visible/not visible -> start in column 4
-        this.displayLetters();
-        // get all selected letters again --- remove in previous step if possible
-        this.setSelectedLetters();
-        // compare selected letters to list of words
-        this.populateFilteredWords();
-    }
+    // get all selected letters
+    this.setSelectedLetters();
+    // de-select letters if they don't match -> start in column 1
+    // check if other letters should be visible/not visible -> start in column 4
+    this.displayLetters();
+    // get all selected letters again --- remove in previous step if possible
+    this.setSelectedLetters();
+    // compare selected letters to list of words
+    this.populateFilteredWords();
+  }
 
-    populateFilteredWords(){
-        this.filteredWords = [];
-        this.setFarthestSelectedColumn();
-        for(let i = 0; i < this.words.length; i++){
-            let allLettersSelected = [];
-            for(let j = this.farthestSelectedColumn; j >= 0; j--){
-                if (this.selectedLetters[j].includes(this.words[i].charAt(j).toUpperCase())){
-                    allLettersSelected.push(true);
-                } else {
-                    allLettersSelected.push(false);
-                }
-            }
-            if(!allLettersSelected.includes(false)){
-                this.filteredWords.push(this.words[i]);
-            }
-        }
-
-        $('#commands').html('Possible words: ');
-        this.filteredWords.forEach(word => {
-            $('#commands').append(`${word} `);
-        });
-    }
-
-    setFarthestSelectedColumn(){
-        for(let i = 0; i < this.selectedLetters.length; i++){
-            if (this.selectedLetters[i].length != 0){
-                this.farthestSelectedColumn = i;
-            }
-        }
-    }
-
-    displayLetters(){
-        // For each column after the first
-        for (let i = 1; i <= 4; i++){
-            // For each button in column, see if preceeding letter requirement is there.
-            let buttonList = $(`#${i} .steel-button`).toArray();
-        
-            buttonList.forEach(button => {
-                if (this.shouldThisBeVisible(button.textContent, i)){
-                    button.classList.remove('hidden');
-                } else {
-                    button.classList.add('hidden');
-                    button.classList.remove('selected');
-                }
-            });
-
-            this.setSelectedLetters();
-        } 
-    } 
-
-    shouldThisBeVisible(letter, column){
-        // Was that the last column? Then all needed letters are selected.
-        if (column == 0){
-            return true;
+  populateFilteredWords() {
+    this.filteredWords = [];
+    this.setFarthestSelectedColumn();
+    for (let i = 0; i < this.words.length; i++) {
+      let allLettersSelected = [];
+      for (let j = this.farthestSelectedColumn; j >= 0; j--) {
+        if (
+          this.selectedLetters[j].includes(
+            this.words[i].charAt(j).toUpperCase()
+          )
+        ) {
+          allLettersSelected.push(true);
         } else {
-            // Go through every word in list
-            for (let i = 0; i < this.words.length; i++){
-                // If this word has a letter at that location
-                if (this.words[i].charAt(column).toUpperCase() == letter){
+          allLettersSelected.push(false);
+        }
+      }
+      if (!allLettersSelected.includes(false)) {
+        this.filteredWords.push(this.words[i]);
+      }
+    }
 
-                    // Are the previous letters in the word available?
-                    let previousLettersSelected = [];
-                    // For each column/letter left of checked letter
-                    for (let j = column - 1; j >= 0; j--){
-                        if (this.selectedLetters[j].includes(this.words[i].charAt(j).toUpperCase())){
-                            previousLettersSelected.push(true);
-                        } else {
-                            previousLettersSelected.push(false);
-                            break;
-                        }
-                    }
+    $('#commands').html('Possible words: ');
+    this.filteredWords.forEach((word) => {
+      $('#commands').append(`${word} `);
+    });
+  }
 
-                    // Were all of them true? AKA all needed letters were selected
-                    if (!previousLettersSelected.includes(false)){
-                        return true;
-                    }
-                }
+  setFarthestSelectedColumn() {
+    for (let i = 0; i < this.selectedLetters.length; i++) {
+      if (this.selectedLetters[i].length != 0) {
+        this.farthestSelectedColumn = i;
+      }
+    }
+  }
+
+  displayLetters() {
+    // For each column after the first
+    for (let i = 1; i <= 4; i++) {
+      // For each button in column, see if preceeding letter requirement is there.
+      let buttonList = $(`#${i} .steel-button`).toArray();
+
+      buttonList.forEach((button) => {
+        if (this.shouldThisBeVisible(button.textContent, i)) {
+          button.classList.remove('hidden');
+        } else {
+          button.classList.add('hidden');
+          button.classList.remove('selected');
+        }
+      });
+
+      this.setSelectedLetters();
+    }
+  }
+
+  shouldThisBeVisible(letter, column) {
+    // Was that the last column? Then all needed letters are selected.
+    if (column == 0) {
+      return true;
+    } else {
+      // Go through every word in list
+      for (let i = 0; i < this.words.length; i++) {
+        // If this word has a letter at that location
+        if (this.words[i].charAt(column).toUpperCase() == letter) {
+          // Are the previous letters in the word available?
+          let previousLettersSelected = [];
+          // For each column/letter left of checked letter
+          for (let j = column - 1; j >= 0; j--) {
+            if (
+              this.selectedLetters[j].includes(
+                this.words[i].charAt(j).toUpperCase()
+              )
+            ) {
+              previousLettersSelected.push(true);
+            } else {
+              previousLettersSelected.push(false);
+              break;
             }
-            // All words looped through, no complete matches found.
-            return false;
+          }
+
+          // Were all of them true? AKA all needed letters were selected
+          if (!previousLettersSelected.includes(false)) {
+            return true;
+          }
         }
-    } 
-
-    setSelectedLetters(){
-        for(let i = 0; i < 5; i++){
-            this.selectedLetters[i] = this.getSelectedLettersInColumn(i);
-        }
+      }
+      // All words looped through, no complete matches found.
+      return false;
     }
+  }
 
-    getSelectedLettersInColumn(column){
-        let selectedLetters = [];
-        let selectedButtons = $(`#${column} .selected`).toArray();
-
-        selectedButtons.forEach(button => {
-            selectedLetters.push(button.textContent);
-        });
-        
-        return selectedLetters;
+  setSelectedLetters() {
+    for (let i = 0; i < 5; i++) {
+      this.selectedLetters[i] = this.getSelectedLettersInColumn(i);
     }
+  }
 
-    getAllButtons(column){
-        let buttonList = [];
-        let buttons = $(`#${column} button`).toArray();
+  getSelectedLettersInColumn(column) {
+    let selectedLetters = [];
+    let selectedButtons = $(`#${column} .selected`).toArray();
 
-        buttons.forEach(button => {
-            let buttonObject = {
-                selected: button.classList.contains('selected'),
-                letter: button.textContent
-            };
-            buttonList.push(buttonObject);
-        });
-        
-        console.log(`Passwords: getAllButtons() - column ${column}`);
-        return buttonList;
-    }
+    selectedButtons.forEach((button) => {
+      selectedLetters.push(button.textContent);
+    });
 
-    selectButton = () => {
-        $(event.currentTarget).toggleClass('selected');
-        this.columnController();
-    }
+    return selectedLetters;
+  }
 
-    draw(){
-        console.log("Passwords.draw(): drawing in canvas")
-        $("#canvas").html(` <div class="row console" id="instructions">Instructions appear here.</div>
+  getAllButtons(column) {
+    let buttonList = [];
+    let buttons = $(`#${column} button`).toArray();
+
+    buttons.forEach((button) => {
+      let buttonObject = {
+        selected: button.classList.contains('selected'),
+        letter: button.textContent,
+      };
+      buttonList.push(buttonObject);
+    });
+
+    console.log(`Passwords: getAllButtons() - column ${column}`);
+    return buttonList;
+  }
+
+  selectButton = () => {
+    $(event.currentTarget).toggleClass('selected');
+    this.columnController();
+  };
+
+  draw() {
+    console.log('Passwords.draw(): drawing in canvas');
+    $('#canvas')
+      .html(` <div class="row console" id="instructions">Instructions appear here.</div>
                             <div class="steel-plate container-fluid">
                                 <div class="row">
                                     <div class="col password-column" id="0">
@@ -229,8 +273,7 @@ class Passwords{
                                     </div>
                                 </div>
                             </div>
-                            <div class="row console" id="commands">Select letters.</div>`
-        );
-        $('.password-column button.steel-button').on('click', this.selectButton);
-    }
+                            <div class="row console" id="commands">Select letters.</div>`);
+    $('.password-column button.steel-button').on('click', this.selectButton);
+  }
 }

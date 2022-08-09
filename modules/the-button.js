@@ -1,11 +1,25 @@
-class TheButton{
-    constructor (){
-        this.draw();
-    }
+class TheButton {
+  constructor() {
+    this.draw();
+  }
 
-    draw(){
-        console.log("TheButton.draw(): drawing in canvas")
-        $("#canvas").html(`<div class="row console" id="instructions">This module is incomplete!</div>
+  // When colour button is pressed, changes colour of THE button
+  changeColour = () => {
+    let classes = $(event.target).attr('class');
+  };
+
+  // When word button is pressed, changes word inside THE button
+  changeWord = () => {
+    let text = $(event.target).attr('innerText');
+  };
+
+  // Determines current state and gives instructions
+  assess = () => {};
+
+  draw() {
+    console.log('TheButton.draw(): drawing in canvas');
+    $('#canvas')
+      .html(`<div class="row console" id="instructions">This module is incomplete!</div>
         <div class="steel-plate container-fluid">
             <div class="row">
                 <div class="col-md-3">
@@ -30,7 +44,7 @@ class TheButton{
                 </div>
                 <div class="col-md-3">
                     <div>
-                        <p class="font-weight-bold">Coloured Strips</p>
+                        <p class="font-weight-bold">Coloured Strip Guide</p>
                         <div class="row">
                             <div class="col-4 blue">4</div>
                             <div class="col-4 white">1</div>
@@ -42,5 +56,5 @@ class TheButton{
             </div>
         </div>
         <div class="row console" id="commands">Identify button attributes.</div>`);
-    }
+  }
 }
