@@ -193,7 +193,7 @@ class Passwords {
   draw() {
     console.log('Passwords.draw(): drawing in canvas');
     $('#canvas')
-      .html(` <div class="row console" id="instructions">Instructions appear here.</div>
+      .html(` <div class="row console" id="instructions">Select the letters in each column.</div>
                             <div class="steel-plate container-fluid">
                                 <div class="row">
                                     <div class="col password-column" id="0">
