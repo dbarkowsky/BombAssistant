@@ -17,6 +17,7 @@ class Bomb {
     $('.battery-button').on('click', this.batteryCountButtons);
     $('.indicator-button').on('click', this.litIndicatorButtons);
     $('.parallel-port-button').on('click', this.parallelPortButton);
+    $('.strike-button').on('click', this.strikeCountButtons);
   }
 
   evenOddButtons() {
@@ -40,7 +41,7 @@ class Bomb {
   }
 
   batteryCountButtons() {
-    console.log(`Bomb: batterCountButtons()`);
+    console.log(`Bomb: batteryCountButtons()`);
     // Get current value
     let currentValue = parseInt($('#battery-display').attr('value'));
     // Check if up or down button is pressed
@@ -53,6 +54,23 @@ class Bomb {
     // Update visual and value
     $('#battery-display').html(currentValue);
     $('#battery-display').attr('value', currentValue);
+  }
+
+  strikeCountButtons() {
+    console.log(`Bomb: strikeCountButtons()`);
+    // Get current value
+    let currentValue = parseInt($('#strike-display').attr('value'));
+    // Check if up or down button is pressed
+    // Increment or decrement value appropriately
+    if ($(this).attr('id') == 'strike-up') {
+      if (currentValue < 2)
+        currentValue++;
+    } else if (currentValue > 0) {
+      currentValue--;
+    }
+    // Update visual and value
+    $('#strike-display').html(currentValue);
+    $('#strike-display').attr('value', currentValue);
   }
 
   litIndicatorButtons() {

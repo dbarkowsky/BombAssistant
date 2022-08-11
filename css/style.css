@@ -124,6 +124,10 @@ section {
   background-color: whitesmoke;
 }
 
+.green {
+  background-color: green;
+}
+
 .clear {
   background-color: grey;
 }
@@ -179,4 +183,11 @@ section {
   pointer-events: none;
   height: 100vh;
   width: 100vw;
+}
+
+
+/* Simon Says */
+.simon-square{
+  width: 30px;
+  height: 30px;
 }
