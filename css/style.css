@@ -190,6 +190,7 @@ section {
   width: 50%;
   height: 50%;
   position: absolute;
+  border: 5px outset;
 }
 
 #simon-red {
@@ -197,9 +198,17 @@ section {
   top: 0;
 }
 
+#simon-red:active {
+  background-color: rgb(165, 0, 0);
+}
+
 #simon-blue {
   right: 0;
   top: 0;
+}
+
+#simon-blue:active {
+  background-color: rgb(0, 0, 163);
 }
 
 #simon-green {
@@ -207,9 +216,17 @@ section {
   bottom: 0;
 }
 
+#simon-green:active {
+  background-color: rgb(0, 80, 0);
+}
+
 #simon-yellow {
   right: 0;
   bottom: 0;
+}
+
+#simon-yellow:active {
+  background-color: rgb(179, 179, 0);
 }
 
 #simon-wrapper {
