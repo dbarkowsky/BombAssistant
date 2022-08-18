@@ -15,7 +15,8 @@ class TheButton {
   // When colour button is pressed, changes colour of THE button
   changeColour = () => {
     const classes = $(event.target).attr('class').split(/\s+/);
-    let colour = classes[1];
+    const COLOUR_LOCATION = 2;
+    let colour = classes[COLOUR_LOCATION];
     console.log('Colour', colour);
 
     // Clear colour from button, then add new colour
@@ -88,7 +89,7 @@ class TheButton {
 
   heldButton = () => {
     $('#commands').html(
-      'Press and hold button. Release when number on matching coloured strip is visible.'
+      'Press and hold button. <br> Release when number on matching coloured strip is visible.'
     );
   };
 
@@ -98,43 +99,69 @@ class TheButton {
 
   draw() {
     console.log('TheButton.draw(): drawing in canvas');
-    $('#canvas')
-      .html(`<div class="row console" id="instructions">Set batteries and lit indicators, then choose colour and word.</div>
+    $('#canvas').html(`
+        <div class="row console" id="instructions">Set batteries and lit indicators, then choose colour and word.</div>
         <div class="steel-plate container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="circle align-middle d-flex red">
-                        <span id="button-text" class="mx-auto">Detonate</span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="row">
-                        <div class="col"><button class="colour-button red"></button></div>
-                        <div class="col"><button class="colour-button white"></button></div>
-                    </div>
-                    <div class="row">
-                        <div class="col"><button class="colour-button blue"></button></div>
-                        <div class="col"><button class="colour-button yellow"></button></div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <button class="steel-button word-button">Abort</button>
-                    <button class="steel-button word-button">Hold</button>
-                    <button class="steel-button word-button">Detonate</button>
-                </div>
-                <div class="col-md-3">
-                    <div>
-                        <p class="font-weight-bold">Coloured Strip Guide</p>
-                        <div class="row">
-                            <div class="col-4 blue">4</div>
-                            <div class="col-4 white">1</div>
-                            <div class="col-4 yellow">5</div>
-                        </div>
-                        <div class="row clear">Any other colour: 1</div>
-                    </div>
-                </div>
+          <div class="row">
+            <div class="col my-3">
+              <div class="circle align-middle d-flex red the-button">
+                <span id="button-text" class="mx-auto">Detonate</span>
+              </div>
             </div>
+            <div class="col my-3">
+              <div class="row">
+                <div class="col-md-6 my-3">
+                  <div class="row">
+                    <div class="col p-1">
+                      <button
+                        class="colour-button colour-button-large red"
+                      ></button>
+                    </div>
+                    <div class="col p-1">
+                      <button
+                        class="colour-button colour-button-large white"
+                      ></button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col p-1">
+                      <button
+                        class="colour-button colour-button-large blue"
+                      ></button>
+                    </div>
+                    <div class="col p-1">
+                      <button
+                        class="colour-button colour-button-large yellow"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 my-3">
+                  <button class="steel-button word-button">Abort</button>
+                  <button class="steel-button word-button">Hold</button>
+                  <button class="steel-button word-button">Detonate</button>
+                </div>
+                <div class="col my-3">
+                  <div class="white rounded">
+                    <p class="h6 py-1 px-3">
+                      Release the button on this number:
+                    </p>
+                    <div class="row">
+                      <div class="col blue coloured-strip">4</div>
+                      <div class="col yellow coloured-strip">5</div>
+                    </div>
+                    <div class="row">
+                      <div class="coloured-strip white">
+                        Any other colour: 1
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="row console" id="commands">Identify button attributes.</div>`);
+        <div class="row console" id="commands">Identify button attributes.</div>
+    `);
   }
 }
