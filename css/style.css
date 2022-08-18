@@ -304,3 +304,15 @@ section {
     height: 85vh;
   }
 }
+
+/* Morse Code */
+.morse-container {
+  max-width: 80%;
+  margin: auto;
+  padding: 1em 0;
+}
+
+#morse-input,
+#entered-letters {
+  min-height: 1em;
+}
