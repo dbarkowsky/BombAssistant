@@ -21,7 +21,7 @@ class SimonSays {
   translateList = () => {
     console.log('translateList(): input', this.inputList);
     // Get bomb variables
-    const serialHasVowel = ($('.vowel-button.selected').attr('value') === "1");
+    const serialHasVowel = $('.vowel-button.selected').attr('value') === '1';
     const strikes = parseInt($('#strike-display').attr('value'));
 
     console.log('serialHasVowel', serialHasVowel);
@@ -31,8 +31,8 @@ class SimonSays {
     this.outputList = [];
 
     // For each input, push colour to output
-    this.inputList.forEach(colour => {
-      if (serialHasVowel){
+    this.inputList.forEach((colour) => {
+      if (serialHasVowel) {
         switch (colour) {
           case 'red':
             switch (strikes) {
@@ -155,12 +155,19 @@ class SimonSays {
 
   draw() {
     console.log('SimonSays.draw(): drawing in canvas');
-    $('#canvas').html(`<div class="row console" id="instructions">Set Serial Vowel and Strikes, then press buttons.</div>
+    $('#canvas')
+      .html(`<div class="row console" id="instructions">Set Serial Vowel and Strikes, then press buttons.</div>
     <div class="steel-plate container-fluid">
-        <div class="red simon-square" value="red"></div>
-        <div class="blue simon-square" value="blue"></div>
-        <div class="green simon-square" value="green"></div>
-        <div class="yellow simon-square" value="yellow"></div>
+      <div id="simon">
+        <div id="simon-container">
+          <div id="simon-wrapper">
+            <div class="red simon-square" id="simon-red" value="red"></div>
+            <div class="blue simon-square" id="simon-blue" value="blue"></div>
+            <div class="green simon-square" id="simon-green" value="green"></div>
+            <div class="yellow simon-square" id="simon-yellow" value="yellow"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row console" id="input-record">-----</div>
     <div class="row console" id="commands">Waiting for input.</div>`);

@@ -185,9 +185,82 @@ section {
   width: 100vw;
 }
 
-
 /* Simon Says */
-.simon-square{
-  width: 30px;
-  height: 30px;
+.simon-square {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+}
+
+#simon-red {
+  left: 0;
+  top: 0;
+}
+
+#simon-blue {
+  right: 0;
+  top: 0;
+}
+
+#simon-green {
+  left: 0;
+  bottom: 0;
+}
+
+#simon-yellow {
+  right: 0;
+  bottom: 0;
+}
+
+#simon-wrapper {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  padding: 50% 0;
+  background: #fff;
+  text-align: center;
+  -ms-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#simon-container {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 80%;
+  height: 0;
+  padding: 5% 0;
+  border: solid 1px rgba(255, 255, 255, 0.2);
+}
+
+#simon {
+  position: relative;
+  width: 60vw;
+  height: 50vh;
+  max-width: 300px;
+  max-height: 360px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+@media (orientation: landscape) {
+  #simon {
+    width: 40vw;
+    height: 85vh;
+  }
 }
