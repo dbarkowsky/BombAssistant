@@ -74,6 +74,10 @@ section {
   border: whitesmoke 2px outset;
 }
 
+.steel-button:active {
+  background-color: lightgrey;
+}
+
 .colour-button {
   position: relative;
   border: whitesmoke 2px outset;
@@ -315,4 +319,29 @@ section {
 #morse-input,
 #entered-letters {
   min-height: 1em;
+}
+
+/* ABC123 */
+.text-red {
+  color: red;
+}
+
+.text-blue {
+  color: blue;
+}
+
+.text-black {
+  color: black;
+}
+
+.border-red {
+  border: outset 2px red;
+}
+
+.border-blue {
+  border: outset 2px blue;
+}
+
+.border-black {
+  border: outset 2px black;
 }
