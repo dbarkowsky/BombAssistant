@@ -345,3 +345,82 @@ section {
 .border-black {
   border: outset 2px black;
 }
+
+/* Complex Wires */
+.complex-wire{
+  width: 10px;
+  height: 100px;
+  border: solid black 1px;
+  margin: -15px auto;
+}
+
+.complex-wire-column{
+  width: 10px;
+}
+
+.complex-light{
+  border-radius: 100%;
+  border: outset 3px gray;
+  background-color: grey;
+  height: 20px;
+  width: 20px;
+  margin: 0 auto;
+  z-index: 10;
+  position: relative;
+}
+
+.complex-light-on{
+  border-radius: 100%;
+  background-color: yellow;
+  border: outset 3px rgb(170, 170, 2);
+  height: 20px;
+  width: 20px;
+  margin: 0 auto;
+  z-index: 10;
+  position: relative;
+}
+
+.complex-star{
+  background-color: grey;
+  height: 25px;
+  width: 25px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.9em;
+  z-index: 10;
+  position: relative;
+}
+
+.complex-words{
+  margin: auto 0;
+}
+
+.white-red{
+  background: repeating-linear-gradient(
+  45deg,
+  white,
+  white 5px,
+  red 5px,
+  red 10px
+)
+}
+
+.white-blue{
+  background: repeating-linear-gradient(
+  45deg,
+  white,
+  white 5px,
+  blue 5px,
+  blue 10px
+)
+}
+
+.red-blue{
+  background: repeating-linear-gradient(
+  45deg,
+  red,
+  red 5px,
+  blue 5px,
+  blue 10px
+)
+}
