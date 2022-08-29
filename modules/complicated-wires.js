@@ -1,7 +1,6 @@
 class ComplicatedWires {
   constructor() {
     this.draw();
-    this.runInterval();
   }
 
   draw() {
@@ -164,6 +163,6 @@ class ComplicatedWires {
 
   // Repeats an interval so notes are frequently updated.
   runInterval = () => {
-    setInterval(this.updateNotes, 1000);
+    return setInterval(this.updateNotes, 1000);
   }
 }

@@ -1,4 +1,5 @@
 let currentModule;
+let currentInterval;
 
 function reset() {
   $('#canvas').html(` <div class="row">
@@ -28,6 +29,9 @@ function reset() {
   $('#img-mazes').on('click', startMazes);
   $('#img-passwords').on('click', startPasswords);
   $('#img-needy-knob').on('click', startNeedyKnob);
+
+  // Clear intervals from other modules
+  clearInterval(currentInterval);
 
   console.log('Controller.reset(): Bomb modules in canvas.');
 }
@@ -62,6 +66,7 @@ function startMorseCode() {
 
 function startComplicatedWires() {
   currentModule = new ComplicatedWires();
+  currentInterval = currentModule.runInterval();
 }
 
 function startMazes() {
