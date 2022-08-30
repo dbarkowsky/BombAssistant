@@ -424,3 +424,54 @@ section {
   blue 10px
 )
 }
+
+/* Needy Knob */
+#needy-arrow{
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+}
+
+#needy-container{
+  padding: 0.5em 0;
+  padding-bottom: 1em;
+}
+
+.needy-circle {
+  border-radius: 100%;
+  background-color: grey;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.needy-button {
+  width: 3em;
+  height: 3em;
+  font-size: 13pt;
+  border: whitesmoke 2px outset;
+  font-weight: bold;
+  color: gray;
+}
+
+.needy-button:active {
+  background-color: lightgrey;
+}
+
+.needy-button:disabled{
+  background-color: darkgrey;
+}
+
+.needy-button-selected{
+  color: black;
+  background-color: lightgreen;
+}
+
+#needy-match{
+  position: relative;
+  top: 0;
+  left: 0.5em;
+  font-family: 'Consolas';
+}
