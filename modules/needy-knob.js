@@ -56,28 +56,33 @@ class NeedyKnob {
 
     // Determine if list matches configuration
     let match;
+    let direction = '';
     // UP
     if (leds.join() === [0,0,0,1].join() || leds.join() === [1,0,1,1].join()){
       this.rotateKnob(upDegrees + 0);
       match = true;
+      direction = 'UP';
     }
     // DOWN
     else if (leds.join() === [0,1,0,1].join() || leds.join() === [1,0,0,1].join()){
       this.rotateKnob(upDegrees + 180);
       match = true;
+      direction = 'DOWN';
     }
     // LEFT
     else if (leds.join() === [0,0,1,1].join() || leds.join() === [0,0,1,0].join()){
       this.rotateKnob(upDegrees + 270);
       match = true;
+      direction = 'LEFT';
     }
     // RIGHT
     else if (leds.join() === [1,0,1,0].join()){
       this.rotateKnob(upDegrees + 90);
       match = true;
+      direction = 'RIGHT';
     }
 
-    if (match) $('#needy-match').html('LED match!');
+    if (match) $('#needy-match').html(`LED match! (${direction})`);
     else{
       $('#needy-match').html('No LED match');
       this.rotateKnob(upDegrees + 0);
