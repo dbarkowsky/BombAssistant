@@ -476,3 +476,18 @@ section {
   font-family: 'Consolas';
   width: 200px;
 }
+
+/* Who's on First */
+.eye-box{
+  width: 20px;
+  max-width: 60px;
+  height: 2em;
+  border: solid 2px black;
+}
+
+#eye-text{
+  background-color: black;
+  color: white;
+  margin: 0;
+  max-width: 120px;
+}
