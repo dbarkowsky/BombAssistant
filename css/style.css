@@ -491,3 +491,16 @@ section {
   margin: 0;
   max-width: 120px;
 }
+
+/* Symbols */
+.symbol-img{
+  width: 40px;
+}
+
+.order-col{
+  max-width: 40px;
+}
+
+.symbol-button:disabled{
+  background-color: rgb(80, 80, 80);
+}
