@@ -2,7 +2,7 @@ class Symbols {
   selectedSymbols; // id attributes of all selected symbols
 
   constructor() {
-    //this.draw();
+    this.draw();
     this.selectedSymbols = [];
     $('.symbol-button').on('click', this.symbolSelected);
   }
