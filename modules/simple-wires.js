@@ -1,6 +1,7 @@
 class SimpleWires {
   constructor() {
     this.draw();
+    this.setSettings();
   }
 
   // TODO: change implementation so only one row is present at a time + clearing wire removes row
@@ -168,5 +169,49 @@ class SimpleWires {
       // else, hide it
       line.css('visibility', 'hidden');
     }
+  }
+
+  // Handles modal for requesting settings
+  setSettings = () => {
+    console.log('SimpleWires.setSettings()');
+
+    // If vowel serial is not set...
+    if (!$('#odd').hasClass('selected') && !$('#even').hasClass('selected')) {
+      // Draw and show modal
+      $('#popup-body').html(`
+      <div id="even-odd-serial" class="global-setting-container">
+        <div class="row steel-text">
+          The last digit of the serial is...
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="steel-button even-odd-button" id="temp-even">
+              EVEN
+            </button>
+          </div>
+          <div class="col">
+            <button class="steel-button even-odd-button" id="temp-odd">
+              ODD
+            </button>
+          </div>
+        </div>
+      </div>
+      `);
+
+      $('#temp-odd').on('click', this.updateSettings);
+      $('#temp-even').on('click', this.updateSettings);
+      $('#popup-modal').modal('show');
+    }
+  }
+
+  // Action to update global settings from temp settings
+  updateSettings = () => {
+    // Set any buttons with this class to default
+    $('.selected.even-odd-button').removeClass('selected');
+
+    // Add the class back to the appropriate button
+    $(event.target).addClass('selected');
+    // And the global settings equivalent (remove temp from id)
+    $(`#${event.target.id.substring(5)}`).addClass('selected');
   }
 }
