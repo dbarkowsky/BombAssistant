@@ -7,6 +7,7 @@ class SimonSays {
     this.inputList = [];
     this.outputList = [];
     $('.simon-square').on('click', this.addColour);
+    this.setSettings();
   }
 
   // Adds colour clicked to list
@@ -171,5 +172,47 @@ class SimonSays {
     </div>
     <div class="row console" id="input-record">-----</div>
     <div class="row console" id="commands">Waiting for input.</div>`);
+  }
+
+  // Handles modal for requesting settings
+  setSettings = () => {
+    console.log('SimonSays.setSettings()');
+
+    // If vowel serial is not set...
+    if (!$('#vowel-true').hasClass('selected') && !$('#vowel-false').hasClass('selected')) {
+      // Draw and show modal
+      $('#popup-body').html(`
+        <div id="vowel-serial" class="global-setting-container">
+          <div class="row steel-text">The serial contains a vowel.</div>
+          <div class="row">
+            <div class="col">
+              <button class="steel-button vowel-button" value="1" id="temp-vowel-true">
+                YES
+              </button>
+            </div>
+            <div class="col">
+              <button class="steel-button vowel-button" value="0" id="temp-vowel-false">
+                NO
+              </button>
+            </div>
+          </div>
+        </div>
+      `);
+
+      $('#temp-vowel-false').on('click', this.updateSettings);
+      $('#temp-vowel-true').on('click', this.updateSettings);
+      $('#popup-modal').modal('show');
+    }
+  }
+
+  // Action to update global settings from temp settings
+  updateSettings = () => {
+    // Set any buttons with this class to default
+    $('.selected.vowel-button').removeClass('selected');
+
+    // Add the class back to the appropriate button
+    $(event.target).addClass('selected');
+    // And the global settings equivalent (remove temp from id)
+    $(`#${event.target.id.substring(5)}`).addClass('selected');
   }
 }

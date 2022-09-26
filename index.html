@@ -102,12 +102,12 @@
                 <div class="row steel-text">The serial contains a vowel.</div>
                 <div class="row">
                   <div class="col">
-                    <button class="steel-button vowel-button" value="1">
+                    <button class="steel-button vowel-button" value="1" id="vowel-true">
                       YES
                     </button>
                   </div>
                   <div class="col">
-                    <button class="steel-button vowel-button" value="0">
+                    <button class="steel-button vowel-button" value="0" id="vowel-false">
                       NO
                     </button>
                   </div>
@@ -201,6 +201,21 @@
         </div>
       </div>
 
+      <!-- Modal for setting pop up notifications. Gets redrawn as needed. -->
+      <div
+        class="modal fade"
+        id="popup-modal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-content">
+            <!-- <div class="modal-header">Set global bomb settings.</div> -->
+            <div class="modal-body" id="popup-body"></div>
+          </div>
+        </div>
+      </div>
+
       <!-- Canvas area for drawing modules -->
       <div id="canvas" class="mx-auto"></div>
     </section>
@@ -211,6 +226,7 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+
     <!-- Jquery import -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
@@ -221,10 +237,7 @@
     <!-- Module script files -->
     <script src="./modules/simple-wires.js" type="text/javascript"></script>
     <script src="./modules/abc123.js" type="text/javascript"></script>
-    <script
-      src="./modules/complicated-wires.js"
-      type="text/javascript"
-    ></script>
+    <script src="./modules/complicated-wires.js" type="text/javascript"></script>
     <script src="./modules/mazes.js" type="text/javascript"></script>
     <script src="./modules/memory.js" type="text/javascript"></script>
     <script src="./modules/morse-code.js" type="text/javascript"></script>
@@ -235,6 +248,7 @@
     <script src="./modules/the-button.js" type="text/javascript"></script>
     <script src="./modules/whos-on-first.js" type="text/javascript"></script>
     <script src="./modules/bomb.js" type="text/javascript"></script>
+
     <!-- Controller script to manage main page behaviours -->
     <script src="./modules/controller.js" type="text/javascript"></script>
   </body>

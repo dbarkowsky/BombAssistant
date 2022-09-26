@@ -38,10 +38,12 @@ function reset() {
 
 function startSimpleWires() {
   currentModule = new SimpleWires();
+  //currentInterval = currentModule.runInterval();
 }
 
 function startTheButton() {
   currentModule = new TheButton();
+  //currentInterval = currentModule.runInterval();
 }
 
 function startSymbols() {
