@@ -148,9 +148,10 @@ section {
 
 /* Backgrounds */
 .steel-plate {
-  background-image: url('../images/module-background.webp');
+  /* background-image: url('../images/module-background.webp');
   background-repeat: repeat;
-  background-size: cover;
+  background-size: cover; */
+  background-color: whitesmoke;
   padding: 0px;
 }
 
@@ -269,10 +270,10 @@ section {
   padding: 50% 0;
   background: #fff;
   text-align: center;
-  -ms-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+  -ms-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 #simon-container {
