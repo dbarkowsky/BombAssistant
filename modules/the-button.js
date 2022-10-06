@@ -97,11 +97,41 @@ class TheButton {
     $('#commands').html('Press and immediately release the button.');
   };
 
+   // Updates the settings notifications
+  updateNotes = () => {
+    console.log('theButton.updateNotes()');
+    if ($('#frk').hasClass('selected')){
+      $('#top-left-frk').html('FRK Indicator: ON');
+    } else {
+      $('#top-left-frk').html('FRK Indicator: OFF');
+    }
+
+    if ($('#car').hasClass('selected')){
+      $('#top-left-car').html('CAR Indicator: ON');
+    } else {
+      $('#top-left-car').html('CAR Indicator: OFF');
+    }
+
+    $('#top-left-batteries').html(`Batteries: ${$('#battery-display').attr('value')}`);
+
+    this.assess();
+  }
+
+  // Repeats an interval so settings notifications are frequently updated.
+  runInterval = () => {
+    return setInterval(this.updateNotes, 1000);
+  }
+
   draw() {
     console.log('TheButton.draw(): drawing in canvas');
     $('#canvas').html(`
         <div class="row console" id="instructions">Set batteries and lit indicators, then choose colour and word.</div>
         <div class="steel-plate container-fluid">
+        <div id="top-left-text">
+          <p id="top-left-frk" class="m-0">FRK Indicator: </p>
+          <p id="top-left-car" class="m-0">CAR Indicator: </p>
+          <p id="top-left-batteries" class="m-0">Batteries: </p>
+        </div>
           <div class="row">
             <div class="col my-3">
               <div class="circle align-middle d-flex red the-button">

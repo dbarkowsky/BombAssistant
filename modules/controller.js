@@ -41,12 +41,12 @@ function reset() {
 
 function startSimpleWires() {
   currentModule = new SimpleWires();
-  //currentInterval = currentModule.runInterval();
+  currentInterval = currentModule.runInterval();
 }
 
 function startTheButton() {
   currentModule = new TheButton();
-  //currentInterval = currentModule.runInterval();
+  currentInterval = currentModule.runInterval();
 }
 
 function startSymbols() {
@@ -80,6 +80,7 @@ function startMazes() {
 
 function startSimonSays() {
   currentModule = new SimonSays();
+  currentInterval = currentModule.runInterval();
 }
 
 function startWhosOnFirst() {

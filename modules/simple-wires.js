@@ -9,7 +9,9 @@ class SimpleWires {
     console.log('SimpleWires.draw(): drawing in canvas');
     $('#canvas')
       .html(` <div class="row console" id="instructions">Instructions appear here.</div>
-                            <div class="steel-plate container-fluid" id="simple-wire-container"></div>
+                            <div class="steel-plate container-fluid" id="simple-wire-container">
+                              <div id="top-left-text">Serial: </div>
+                            </div>
                             <div class="row console" id="commands">Add more wires.</div>`);
     for (let i = 0; i < 6; i++) {
       $('#simple-wire-container').append(`<div class="row simple-wire-row p-1">
@@ -213,5 +215,25 @@ class SimpleWires {
     $(event.target).addClass('selected');
     // And the global settings equivalent (remove temp from id)
     $(`#${event.target.id.substring(5)}`).addClass('selected');
+  }
+
+  // Updates the Serial notification
+  updateNotes = () => {
+    console.log('SimpleWires.updateNotes()');
+    // Is serial set?
+    if ($('#odd').hasClass('selected')){
+      $('#top-left-text').html('Serial: Odd');
+    } else if ($('#even').hasClass('selected')){
+      $('#top-left-text').html('Serial: Even');
+    } else {
+      $('#top-left-text').html('Not set.');
+    }
+
+    this.setCommands();
+  }
+
+  // Repeats an interval so serial notification is frequently updated.
+  runInterval = () => {
+    return setInterval(this.updateNotes, 1000);
   }
 }

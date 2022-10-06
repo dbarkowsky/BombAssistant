@@ -1,6 +1,7 @@
 class ComplicatedWires {
   constructor() {
     this.draw();
+    this.setSettings();
   }
 
   draw() {
@@ -130,6 +131,92 @@ class ComplicatedWires {
           </div>
         </div>
         `);
+  }
+
+  // Handles modal for requesting settings
+  setSettings = () => {
+    console.log('ComplicatedWires.setSettings()');
+
+    // If vowel serial is not set...
+    if ((!$('#odd').hasClass('selected') && !$('#even').hasClass('selected')) ||
+        (!$('#parallel-false').hasClass('selected') && !$('#parallel-true').hasClass('selected'))) {
+      // Draw and show modal
+      $('#popup-body').html(`
+        <div id="even-odd-serial" class="global-setting-container">
+          <div class="row steel-text">
+            The last digit of the serial is...
+          </div>
+          <div class="row">
+            <div class="col">
+              <button class="steel-button even-odd-button" id="temp-even">
+                EVEN
+              </button>
+            </div>
+            <div class="col">
+              <button class="steel-button even-odd-button" id="temp-odd">
+                ODD
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="parallel-port" class="global-setting-container">
+          <div class="row steel-text">
+            Is there a parallel port?
+            <span
+              ><img
+                id="parallel-img"
+                src="./images/parallelport.png"
+                alt="A parallel port"
+            /></span>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button
+                class="steel-button parallel-port-button"
+                id="temp-parallel-true"
+              >
+                YES
+              </button>
+            </div>
+            <div class="col">
+              <button
+                class="steel-button parallel-port-button"
+                id="temp-parallel-false"
+              >
+                NO
+              </button>
+            </div>
+          </div>
+        </div>
+      `);
+
+      $('#temp-odd').on('click', this.updateSettingsEvenOdd);
+      $('#temp-even').on('click', this.updateSettingsEvenOdd);
+      $('#temp-parallel-true').on('click', this.updateSettingsParallel);
+      $('#temp-parallel-false').on('click', this.updateSettingsParallel);
+      $('#popup-modal').modal('show');
+    }
+  }
+
+  // Action to update global settings from temp settings
+  updateSettingsEvenOdd = () => {
+    // Set any buttons with this class to default
+    $('.selected.even-odd-button').removeClass('selected');
+
+    // Add the class back to the appropriate button
+    $(event.target).addClass('selected');
+    // And the global settings equivalent (remove temp from id)
+    $(`#${event.target.id.substring(5)}`).addClass('selected');
+  }
+
+  updateSettingsParallel = () => {
+    // Set any buttons with this class to default
+    $('.selected.parallel-port-button').removeClass('selected');
+
+    // Add the class back to the appropriate button
+    $(event.target).addClass('selected');
+    // And the global settings equivalent (remove temp from id)
+    $(`#${event.target.id.substring(5)}`).addClass('selected');
   }
 
   // Updates the notes in each section

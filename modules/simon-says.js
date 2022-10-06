@@ -159,6 +159,10 @@ class SimonSays {
     $('#canvas')
       .html(`<div class="row console" id="instructions">Set Serial Vowel and Strikes, then press buttons.</div>
     <div class="steel-plate container-fluid">
+    <div id="top-left-text">
+      <p id="top-left-serial" class="m-0">Serial Vowel: </p>
+      <p id="top-left-strikes" class="m-0">Strikes: </p>
+    </div>
       <div id="simon">
         <div id="simon-container">
           <div id="simon-wrapper">
@@ -214,5 +218,25 @@ class SimonSays {
     $(event.target).addClass('selected');
     // And the global settings equivalent (remove temp from id)
     $(`#${event.target.id.substring(5)}`).addClass('selected');
+  }
+
+  // Updates the settings notifications
+  updateNotes = () => {
+    console.log('SimonSays.updateNotes()');
+    // Is serial set?
+    if ($('#vowel-true').hasClass('selected')){
+      $('#top-left-serial').html('Serial Vowel: True');
+    } else if ($('#vowel-false').hasClass('selected')){
+      $('#top-left-serial').html('Serial Vowel: False');
+    } else {
+      $('#top-left-serial').html('Serial Vowel: Not set.');
+    }
+
+    $('#top-left-strikes').html(`Strikes: ${parseInt($('#strike-display').attr('value'))}`);
+  }
+
+  // Repeats an interval so settings notifications are frequently updated.
+  runInterval = () => {
+    return setInterval(this.updateNotes, 1000);
   }
 }

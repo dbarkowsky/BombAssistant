@@ -117,6 +117,14 @@ section {
   margin: 5px auto;
 }
 
+#top-left-text{
+  position: relative;
+  top: 0;
+  left: 0.5em;
+  font-family: 'Consolas';
+  width: 200px;
+}
+
 /* General Colours */
 .yellow {
   background-color: yellow;
@@ -124,6 +132,7 @@ section {
 
 .blue {
   background-color: blue;
+  color: white;
 }
 
 .black {
@@ -151,7 +160,7 @@ section {
   /* background-image: url('../images/module-background.webp');
   background-repeat: repeat;
   background-size: cover; */
-  background-color: whitesmoke;
+  background-color: white;
   padding: 0px;
 }
 
@@ -468,14 +477,6 @@ section {
 .needy-button-selected{
   color: black;
   background-color: lightgreen;
-}
-
-#needy-match{
-  position: relative;
-  top: 0;
-  left: 0.5em;
-  font-family: 'Consolas';
-  width: 200px;
 }
 
 /* Who's on First */

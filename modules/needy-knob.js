@@ -82,9 +82,9 @@ class NeedyKnob {
       direction = 'RIGHT';
     }
 
-    if (match) $('#needy-match').html(`LED match! (${direction})`);
+    if (match) $('#top-left-text').html(`LED match! (${direction})`);
     else{
-      $('#needy-match').html('No LED match');
+      $('#top-left-text').html('No LED match');
       this.rotateKnob(upDegrees + 0);
     } 
     console.log('NeedyKnob.process(): leds', leds);
@@ -95,7 +95,7 @@ class NeedyKnob {
     $('#canvas').html(`
       <div class="row console" id="instructions">If necessary, change UP location.<br>Turn required LEDs on or off.</div>
       <div class="container-fluid" id="needy-container">
-      <div id="needy-match">No LED match</div>
+      <div id="top-left-text">No LED match</div>
         <div class="d-flex justify-content-center">
           <button class="needy-button needy-button-selected rounded up" id="up-up">UP</button>
         </div>
