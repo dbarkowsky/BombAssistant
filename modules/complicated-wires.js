@@ -162,12 +162,11 @@ class ComplicatedWires {
         <div id="parallel-port" class="global-setting-container">
           <div class="row steel-text">
             Is there a parallel port?
-            <span
-              ><img
+            <img
                 id="parallel-img"
-                src="./images/parallelport.png"
+                src="./images/parallelport.svg"
                 alt="A parallel port"
-            /></span>
+            />
           </div>
           <div class="row">
             <div class="col">

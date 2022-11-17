@@ -741,60 +741,83 @@ class Mazes {
     console.log('Mazes.draw(): drawing in canvas');
     $('#canvas')
       .html(` <div class="row console" id="instructions">Select one circle location.</div>
-                            <div class="container-fluid" id="maze-container">
-                                <div id="maze">
-                                    <div class="row">
-                                        <div class="col maze-square" id="A1"></div>
-                                        <div class="col maze-square" id="B1"></div>
-                                        <div class="col maze-square" id="C1"></div>
-                                        <div class="col maze-square" id="D1"></div>
-                                        <div class="col maze-square" id="E1"></div>
-                                        <div class="col maze-square" id="F1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col maze-square" id="A2"></div>
-                                        <div class="col maze-square" id="B2"></div>
-                                        <div class="col maze-square" id="C2"></div>
-                                        <div class="col maze-square" id="D2"></div>
-                                        <div class="col maze-square" id="E2"></div>
-                                        <div class="col maze-square" id="F2"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col maze-square" id="A3"></div>
-                                        <div class="col maze-square" id="B3"></div>
-                                        <div class="col maze-square" id="C3"></div>
-                                        <div class="col maze-square" id="D3"></div>
-                                        <div class="col maze-square" id="E3"></div>
-                                        <div class="col maze-square" id="F3"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col maze-square" id="A4"></div>
-                                        <div class="col maze-square" id="B4"></div>
-                                        <div class="col maze-square" id="C4"></div>
-                                        <div class="col maze-square" id="D4"></div>
-                                        <div class="col maze-square" id="E4"></div>
-                                        <div class="col maze-square" id="F4"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col maze-square" id="A5"></div>
-                                        <div class="col maze-square" id="B5"></div>
-                                        <div class="col maze-square" id="C5"></div>
-                                        <div class="col maze-square" id="D5"></div>
-                                        <div class="col maze-square" id="E5"></div>
-                                        <div class="col maze-square" id="F5"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col maze-square" id="A6"></div>
-                                        <div class="col maze-square" id="B6"></div>
-                                        <div class="col maze-square" id="C6"></div>
-                                        <div class="col maze-square" id="D6"></div>
-                                        <div class="col maze-square" id="E6"></div>
-                                        <div class="col maze-square" id="F6"></div>
-                                    </div>
-                                    <svg id="svg-canvas"></svg>
-                                </div>
-                            </div>
-                            <svg id="svg-canvas"></svg>
-                            <div class="row console" id="commands">Follow instructions above.</div>`);
+      <div class="container-fluid" id="maze-container">
+        <div class="row">
+          <div class="col-1 p-0">
+            <div class="maze-header maze-sidebar text-right"></div>
+            <div class="maze-sidebar text-right">1</div>
+            <div class="maze-sidebar text-right">2</div>
+            <div class="maze-sidebar text-right">3</div>
+            <div class="maze-sidebar text-right">4</div>
+            <div class="maze-sidebar text-right">5</div>
+            <div class="maze-sidebar text-right">6</div>
+          </div>
+          <div class="col-auto">
+            <div class="row py-0 mt-2">
+              <div class="col maze-header text-center">A</div>
+              <div class="col maze-header text-center">B</div>
+              <div class="col maze-header text-center">C</div>
+              <div class="col maze-header text-center">D</div>
+              <div class="col maze-header text-center">E</div>
+              <div class="col maze-header text-center">F</div>
+            </div>
+            <div class="row">
+              <div id="maze" class="col p-0 mt-0">
+                <div class="row">
+                  <div class="col maze-square" id="A1"></div>
+                  <div class="col maze-square" id="B1"></div>
+                  <div class="col maze-square" id="C1"></div>
+                  <div class="col maze-square" id="D1"></div>
+                  <div class="col maze-square" id="E1"></div>
+                  <div class="col maze-square" id="F1"></div>
+                </div>
+                <div class="row">
+                  <div class="col maze-square" id="A2"></div>
+                  <div class="col maze-square" id="B2"></div>
+                  <div class="col maze-square" id="C2"></div>
+                  <div class="col maze-square" id="D2"></div>
+                  <div class="col maze-square" id="E2"></div>
+                  <div class="col maze-square" id="F2"></div>
+                </div>
+                <div class="row">
+                  <div class="col maze-square" id="A3"></div>
+                  <div class="col maze-square" id="B3"></div>
+                  <div class="col maze-square" id="C3"></div>
+                  <div class="col maze-square" id="D3"></div>
+                  <div class="col maze-square" id="E3"></div>
+                  <div class="col maze-square" id="F3"></div>
+                </div>
+                <div class="row">
+                  <div class="col maze-square" id="A4"></div>
+                  <div class="col maze-square" id="B4"></div>
+                  <div class="col maze-square" id="C4"></div>
+                  <div class="col maze-square" id="D4"></div>
+                  <div class="col maze-square" id="E4"></div>
+                  <div class="col maze-square" id="F4"></div>
+                </div>
+                <div class="row">
+                  <div class="col maze-square" id="A5"></div>
+                  <div class="col maze-square" id="B5"></div>
+                  <div class="col maze-square" id="C5"></div>
+                  <div class="col maze-square" id="D5"></div>
+                  <div class="col maze-square" id="E5"></div>
+                  <div class="col maze-square" id="F5"></div>
+                </div>
+                <div class="row">
+                  <div class="col maze-square" id="A6"></div>
+                  <div class="col maze-square" id="B6"></div>
+                  <div class="col maze-square" id="C6"></div>
+                  <div class="col maze-square" id="D6"></div>
+                  <div class="col maze-square" id="E6"></div>
+                  <div class="col maze-square" id="F6"></div>
+                </div>
+                <svg id="svg-canvas"></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <svg id="svg-canvas"></svg>
+      </div>
+      <div class="row console" id="commands">Follow instructions above.</div>`);
   }
 }
