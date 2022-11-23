@@ -752,7 +752,7 @@ class Mazes {
             <div class="maze-sidebar text-right">5</div>
             <div class="maze-sidebar text-right">6</div>
           </div>
-          <div class="col-auto">
+          <div class="col-11">
             <div class="row py-0 mt-2">
               <div class="col maze-header text-center">A</div>
               <div class="col maze-header text-center">B</div>
