@@ -284,7 +284,7 @@ section {
   width: 50%;
   height: 50%;
   position: absolute;
-  border: 5px outset;
+  border: black 5px outset;
 }
 
 #simon-red {
