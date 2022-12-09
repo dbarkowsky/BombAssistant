@@ -215,12 +215,14 @@ class WhosOnFirst {
     Object.keys(words).forEach(word => {
       console.log(word);
       if (words[word].eye){
-        $('#word-row').append(`<div class="col-lg-3 col-md-4 col-6"><button class="steel-button word-button" value="${word}">${words[word].text}</button></div>`)
+        $('#word-row').append(`<div class="col-lg-3 col-4"><button class="steel-button word-button wof-button" value="${word}">${words[word].text}</button></div>`)
       }
     });
 
     // Add action listener
     $('.word-button').on('click', this.placeEye);
+
+    $('#instructions').html('Select word seen on bomb screen.');
   }
 
   // Draw phase 2 words
@@ -237,7 +239,7 @@ class WhosOnFirst {
     Object.keys(words).forEach(word => {
       console.log(word);
       if (words[word].words){
-        $('#word-row').append(`<div class="col-lg-3 col-md-4 col-6"><button class="steel-button word-button" value="${word}">${words[word].text}</button></div>`)
+        $('#word-row').append(`<div class="col-lg-3 col-4"><button class="steel-button word-button wof-button" value="${word}">${words[word].text}</button></div>`)
       }
     });
 
@@ -275,16 +277,17 @@ class WhosOnFirst {
     // Clear eye boxes
     $('.eye-box').html('');
 
-    // Insert words into commands div
+    // Insert words into word-buttons div
     const wordsToPrint = words[buttonValue].words;
-    $('#commands').html(`Defuser selects first available word:`);
-    $('#commands').append(`<br>${wordsToPrint}`);
+    $('#word-buttons').html(``);
+    $('#word-buttons').append(`<p id="wof-words">${wordsToPrint}</p>`);
+    $('#word-buttons').append(`<button class="my-3 steel-button word-button wof-button" id="phase1Go">REPEAT</button>`);
 
-    // Draw phase 1 word buttons
-    this.phase1Words();
+    // Event listener to get back to phase 1.
+    document.getElementById('phase1Go').addEventListener('click', this.phase1Words);
 
     // Update instructions
-    $('#instructions').html(`See commands below.<br>Repeat by selecting word seen on bomb screen.`);
+    $('#instructions').html(`Defuser selects first available word:`);
   }
 
   draw() {
@@ -314,7 +317,6 @@ class WhosOnFirst {
           </div>
         </div>
       </div>
-      <div class="row console" id="commands">Waiting for words...</div>
     `);
   }
 }

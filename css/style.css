@@ -7,6 +7,7 @@ header {
 
 section {
   align-items: center;
+  min-width: 375px;
 }
 
 .row {
@@ -586,6 +587,14 @@ section {
 }
 
 /* Who's on First */
+#word-buttons{
+  min-height: 380px;
+}
+
+#eye-container{
+  text-align: center;
+}
+
 .eye-box{
   width: 20px;
   max-width: 60px;
@@ -598,6 +607,20 @@ section {
   color: white;
   margin: 0;
   max-width: 120px;
+}
+
+#phase1Go{
+  max-width: 150px;
+}
+
+#wof-words{
+  font-size: 1.5em;
+}
+
+@media only screen and (max-width: 771px) {
+  .wof-button{
+    font-size: 0.85em !important;
+  }
 }
 
 /* Symbols */
