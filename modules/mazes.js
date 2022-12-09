@@ -6,6 +6,7 @@ class Mazes {
   configurations; // 3D array of possible square configurations. 1D = 9 possible configs, 2D = 36 squares on board, 3D = 4 directions of links (0,1,2,3 = up,down,left,right) + circle boolean
   optimalPath; // List of square tags that makes for the optimal path through maze.
   directions; // List of directions, from white square to red triangle  e.g. ['LEFT', 'UP', 'RIGHT', 'DOWN']
+  drawTracker; // Tracks what SVG elements have been drawn, used when resizing window.
 
   constructor() {
     this.draw();
@@ -13,8 +14,15 @@ class Mazes {
     this.squares = this.initSquares();
     this.configurations = this.populateConfigs();
     $('.maze-square').on('click', this.squareSelected);
+    this.drawTracker = {
+      circles: {visible: false},
+      lines: {visible: false},
+      triangle: {visible: false, id: null},
+      square: {visible: false, id: null}
+    }
     console.log(this.squares);
     console.log(this.configurations);
+    window.addEventListener('resize', this.redrawSVG);
   }
 
   // Populates the squares with default status. All links closed.
@@ -40,6 +48,8 @@ class Mazes {
 
     return squareObjects;
   };
+
+  
 
   // Fill configurations array
   populateConfigs = () => {
@@ -641,6 +651,8 @@ class Mazes {
       'stroke: green; stroke-width: 4px; fill: none;'
     );
     document.getElementById('svg-canvas').append(circle);
+    this.drawTracker.circles.visible = true;
+    this.drawTracker.circles.id = id;
   };
 
   // Draw triangle in the square provided
@@ -664,6 +676,8 @@ class Mazes {
     );
     triangle.setAttribute('style', 'fill: red;');
     document.getElementById('svg-canvas').append(triangle);
+    this.drawTracker.triangle.visible = true;
+    this.drawTracker.triangle.id = id;
   };
 
   // Draw square in the square provided
@@ -690,6 +704,8 @@ class Mazes {
       'stroke: black; stroke-width: 3px; fill: none;'
     );
     document.getElementById('svg-canvas').append(littleSquare);
+    this.drawTracker.square.visible = true;
+    this.drawTracker.square.id = id;
   };
 
   // Based on optimal path, draws SVG line through squares
@@ -699,6 +715,7 @@ class Mazes {
       this.drawLine(this.optimalPath[i], this.optimalPath[i + 1]);
       this.addDirection(this.optimalPath[i], this.optimalPath[i + 1]);
     }
+    this.drawTracker.lines.visible = true;
   };
 
   // Draw an individual line between two elements, based on id
@@ -717,6 +734,30 @@ class Mazes {
     newLine.setAttribute('style', 'stroke: blue; stroke-width: 2px;');
     document.getElementById('svg-canvas').prepend(newLine);
   };
+
+  // Redraws SVG on screen resize
+  redrawSVG = () => {
+    console.log('Resize detected');
+    document.getElementById('svg-canvas').innerHTML = '';
+
+    if (this.drawTracker.circles.visible) {
+      this.circles.forEach((circle) => {
+        this.drawCircle(circle);
+      });
+    }
+
+    if (this.drawTracker.square.visible){
+      this.drawSquare(this.drawTracker.square.id);
+    }
+
+    if (this.drawTracker.triangle.visible){
+      this.drawTriangle(this.drawTracker.triangle.id);
+    }
+
+    if (this.drawTracker.lines.visible){
+      this.drawPath();
+    }
+  }
 
   // Adds direction string to directions list
   addDirection = (id1, id2) => {
@@ -811,7 +852,6 @@ class Mazes {
                   <div class="col maze-square" id="E6"></div>
                   <div class="col maze-square" id="F6"></div>
                 </div>
-                <svg id="svg-canvas"></svg>
               </div>
             </div>
           </div>
