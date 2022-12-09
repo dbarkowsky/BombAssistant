@@ -240,6 +240,33 @@ section {
   color: black;
 }
 
+#button-col{
+  margin-top: -1rem !important;
+}
+
+@media only screen and (max-width: 464px) {
+  .the-button {
+    position: relative;
+    top: -60px;
+    right: -85px;
+    width: 75px;
+    height: 75px;
+    font-size: 10pt;
+  }
+
+  #button-col{
+    margin-top: 0 !important;
+    height: 15px;
+  }
+
+  .colour-button-large{
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+  }
+}
+
 .coloured-strip {
   text-align: center;
   font-weight: bold;

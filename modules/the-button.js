@@ -127,20 +127,20 @@ class TheButton {
     $('#canvas').html(`
         <div class="row console" id="instructions">Set batteries and lit indicators, then choose colour and word.</div>
         <div class="steel-plate container-fluid">
-        <div id="top-left-text">
-          <p id="top-left-frk" class="m-0">FRK Indicator: </p>
-          <p id="top-left-car" class="m-0">CAR Indicator: </p>
-          <p id="top-left-batteries" class="m-0">Batteries: </p>
-        </div>
+          <div id="top-left-text">
+            <p id="top-left-frk" class="m-0">FRK Indicator: </p>
+            <p id="top-left-car" class="m-0">CAR Indicator: </p>
+            <p id="top-left-batteries" class="m-0">Batteries: </p>
+          </div>
           <div class="row">
-            <div class="col my-3">
+            <div class="col-sm-12 col-lg-6" id="button-col">
               <div class="circle align-middle d-flex red the-button">
                 <span id="button-text" class="mx-auto">Detonate</span>
               </div>
             </div>
-            <div class="col my-3">
+            <div class="col-md-12 col-lg-6">
               <div class="row">
-                <div class="col-md-6 my-3">
+                <div class="col-6 my-3">
                   <div class="row">
                     <div class="col p-1">
                       <button
@@ -166,7 +166,7 @@ class TheButton {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 my-3">
+                <div class="col-6 my-3">
                   <button class="steel-button word-button">Abort</button>
                   <button class="steel-button word-button">Hold</button>
                   <button class="steel-button word-button">Detonate</button>
