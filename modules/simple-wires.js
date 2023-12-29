@@ -4,10 +4,15 @@ const RED_INDEX = 2;
 const WHITE_INDEX = 3;
 const BLACK_INDEX = 4;
 const YELLOW_RGB = 'rgb(255, 255, 0)';
+const YELLOW_ACTIVE_RGB = 'rgb(173, 173, 0)';
 const BLUE_RGB = 'rgb(0, 0, 255)';
+const BLUE_ACTIVE_RGB = 'rgb(0, 0, 199)';
 const RED_RGB = 'rgb(255, 0, 0)';
+const RED_ACTIVE_RGB = 'rgb(168, 0, 0)';
 const WHITE_RGB = 'rgb(245, 245, 245)';
+const WHITE_ACTIVE_RGB = 'rgb(175, 170, 170)';
 const BLACK_RGB = 'rgb(0, 0, 0)';
+const BLACK_ACTIVE_RGB = 'rgb(49, 49, 49)';
 
 class SimpleWires {
   wiresDisplayed;
@@ -64,30 +69,35 @@ class SimpleWires {
 
         switch (wire.style.backgroundColor) {
           case RED_RGB:
+          case RED_ACTIVE_RGB:
             this.coloursCount[RED_INDEX]++;
             break;
           case WHITE_RGB:
+          case WHITE_ACTIVE_RGB:
             this.coloursCount[WHITE_INDEX]++;
             break;
           case BLACK_RGB:
+          case BLACK_ACTIVE_RGB:
             this.coloursCount[BLACK_INDEX]++;
             break;
           case YELLOW_RGB:
+          case YELLOW_ACTIVE_RGB:
             this.coloursCount[YELLOW_INDEX]++;
             break;
           case BLUE_RGB:
+          case BLUE_ACTIVE_RGB:
             this.coloursCount[BLUE_INDEX]++;
             break;
         }
       }
     }
     this.wiresVisible = this.wireList.length;
-  }
+  };
 
   // Checks wires and runs logic to give defuser commands
   setCommands = () => {
-    // console.log('SimpleWires: setCommands() - ' + this.wireList.length);
-    // console.log('SimpleWires: setCommands() - ' + this.coloursCount);
+    console.log('SimpleWires: setCommands() - ' + this.wireList.length);
+    console.log('SimpleWires: setCommands() - ' + this.coloursCount);
     // Track last wire for logic purposes
     const LAST_WIRE = this.wireList.length - 1;
 
@@ -98,7 +108,7 @@ class SimpleWires {
         if (this.coloursCount[RED_INDEX] == 0)
           $('#commands').html(`Cut the second wire.`);
         // If the last wire is white, cut the last wire.
-        else if (this.wireList[LAST_WIRE].style.backgroundColor == WHITE_RGB)
+        else if (this.wireList[LAST_WIRE].style.backgroundColor == WHITE_RGB || this.wireList[LAST_WIRE].style.backgroundColor == WHITE_ACTIVE_RGB)
           $('#commands').html(`Cut the last wire.`);
         // If there is more than one blue wire, cut the last blue wire.
         else if (this.coloursCount[BLUE_INDEX] > 1)
@@ -112,7 +122,7 @@ class SimpleWires {
           $('#commands').html(`Cut the last red wire.`);
         // If the last wire is yellow and there are no red wires, cut the first wire.
         else if (
-          this.wireList[LAST_WIRE].style.backgroundColor == YELLOW_RGB &&
+          (this.wireList[LAST_WIRE].style.backgroundColor == YELLOW_RGB || this.wireList[LAST_WIRE].style.backgroundColor == YELLOW_ACTIVE_RGB) &&
           this.coloursCount[RED_INDEX] === 0
         )
           $('#commands').html(`Cut the first wire.`);
@@ -128,7 +138,7 @@ class SimpleWires {
       case 5:
         // If the last wire is black and the last digit of serial is odd, cut 4th wire.
         if (
-          this.wireList[LAST_WIRE].style.backgroundColor == BLACK_RGB &&
+          (this.wireList[LAST_WIRE].style.backgroundColor == BLACK_RGB || this.wireList[LAST_WIRE].style.backgroundColor == BLACK_ACTIVE_RGB) &&
           $('#odd').hasClass('selected')
         )
           $('#commands').html(`Cut the fourth wire.`);
@@ -163,7 +173,7 @@ class SimpleWires {
       default:
         $('#commands').html(`Add more wires.`);
     }
-  }
+  };
 
   // When a user clicks a colour button
   clickedButton = () => {
@@ -185,7 +195,7 @@ class SimpleWires {
     this.collectInfo();
     this.setCommands();
     this.showWires(this.wiresVisible);
-  }
+  };
 
   // Handles modal for requesting settings
   setSettings = () => {
@@ -218,7 +228,7 @@ class SimpleWires {
       $('#temp-even').on('click', this.updateSettings);
       $('#popup-modal').modal('show');
     }
-  }
+  };
 
   // Action to update global settings from temp settings
   updateSettings = () => {
@@ -229,7 +239,7 @@ class SimpleWires {
     $(event.target).addClass('selected');
     // And the global settings equivalent (remove temp from id)
     $(`#${event.target.id.substring(5)}`).addClass('selected');
-  }
+  };
 
   // Sees which wires should be visible and makes it so
   showWires = (visibleWireCount) => {
@@ -238,9 +248,9 @@ class SimpleWires {
     console.log('allWires', allWires);
     console.log('wireList', this.wireList);
     allWires.forEach((wire, index) => {
-      if (this.wireList[index]){
+      if (this.wireList[index]) {
         console.log('wire background', wire.style.backgroundColor);
-        console.log('wirelist value', this.wireList[index].style.backgroundColor)
+        console.log('wirelist value', this.wireList[index].style.backgroundColor);
         console.log('wirelist index', index);
         wire.style.backgroundColor = this.wireList[index].style.backgroundColor;
         wire.classList.remove('hidden');
@@ -249,33 +259,33 @@ class SimpleWires {
         wire.classList.add('hidden');
         wire.style.visibility = 'hidden';
       }
-    })
+    });
 
     const allRows = document.querySelectorAll('.simple-wire-row');
     allRows.forEach(row => {
-      if (row.id <= visibleWireCount){ row.classList.remove('hidden'); }
+      if (row.id <= visibleWireCount) { row.classList.remove('hidden'); }
       else { row.classList.add('hidden'); }
     });
-    
-  }
+
+  };
 
   // Updates the Serial notification
   updateNotes = () => {
     console.log('SimpleWires.updateNotes()');
     // Is serial set?
-    if ($('#odd').hasClass('selected')){
+    if ($('#odd').hasClass('selected')) {
       $('#top-left-text').html('Serial: Odd');
-    } else if ($('#even').hasClass('selected')){
+    } else if ($('#even').hasClass('selected')) {
       $('#top-left-text').html('Serial: Even');
     } else {
       $('#top-left-text').html('Not set.');
     }
 
     this.setCommands();
-  }
+  };
 
   // Repeats an interval so serial notification is frequently updated.
   runInterval = () => {
     return setInterval(this.updateNotes, 1000);
-  }
+  };
 }
